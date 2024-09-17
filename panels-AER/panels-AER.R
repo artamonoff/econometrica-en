@@ -1,6 +1,4 @@
-# load and save panel data from plm r-package
-
-# library(plm)
+# load and save panel data from AER r-package
 
 panels.df <- c('CigarettesSW', 'Fatalities', 'GSOEP9402', 'Guns', 'HealthInsurance', 'Municipalities', 'NaturalGas', 'OECDGas', 'PSID1976', 'PSID7682', 'USSeatBelts') 
 
