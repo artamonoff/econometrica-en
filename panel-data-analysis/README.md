@@ -1,5 +1,9 @@
 # Panel data analysis with Python
 
-Panel data analysis is implemented in [`linearmodels`](https://bashtage.github.io/linearmodels/) library
+Necessary packages
 
-It can be install using the commands `pip install linearmodels` or `conda install -c conda-forge linearmodels`
+- [`numpy`](https://numpy.org/): Arrays, data transformation
+- [`pandeas`](https://pandas.pydata.org/): DataFrames, data tables
+- [`linearmodels`](https://bashtage.github.io/linearmodels/): Panel regressipons fitting
+
+`linearmodels` package can be install using the commands `pip install linearmodels` or `conda install -c conda-forge linearmodels`
