@@ -1,0 +1,287 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath, amsfonts, amsthm, amssymb, amsopn, amscd}
+\usepackage{enumerate, bm}
+\usepackage[mathscr]{eucal}
+
+\usepackage{hyperref}
+\hypersetup{unicode=true,final=true,colorlinks=true}
+
+\theoremstyle{remark}
+%\newtheorem{problem}{Упражнение}
+\newtheorem{exercise}{}[section]
+\renewcommand{\theexercise}{\textbf{\#\arabic{exercise}}}
+
+\input{econometrics-defs-en.tex}
+
+\title{List 01. Panel analysis}
+
+\author{Nikita V. Artamonov}
+
+\begin{document}
+
+\maketitle
+
+Necessary Python package: \texttt{pandas, numpy, linearmodels}\footnote{\texttt{conda install -c conda-forge linearmodels}
+\texttt{pip install linearmodels}}
+
+\tableofcontents
+
+\section{Baseline model}
+
+\begin{exercise}
+For the panel \texttt{Grunfeld} consider a regression
+\begin{center}
+	inv on value \& capital
+\end{center}
+\textbf{Remark}: here \texttt{firm} is an individual index, 
+\texttt{year} is a time index.
+\begin{enumerate}
+	\item write down the specification of a baseline model
+	\item import the dataset and set a MultiIndex over a pandas DataFrame 
+	(please, mind  individual and time indices).
+	\item Is the panel balanced or not?
+	\item Evaluate matrices of regression design \(\vecty, \matrixX\)
+	\item Fit Pooling, RE and FE (within-estimators) models
+	\begin{itemize}
+		\item via matrices of regression design
+		\item via regression specification
+	\end{itemize}
+	and report the fitting result.
+	\item For each model test the significance of coefficients. Perform both
+	non-robust and robust test.
+	\item Test overall significance of each model. Perform both
+	non-robust and robust test
+	\item Perform Hausman test
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Gun Laws and the Effect on Crime]
+For the panel \texttt{Guns} consider a regression
+\begin{center}
+	log(violent) on law (+ another regressors) 
+\end{center}
+\textbf{Remark}: here \texttt{state} is an individual index, 
+\texttt{year} is a time index.
+\begin{enumerate}
+	\item write down the specification of a baseline model
+	\item import the dataset and set a MultiIndex over a pandas DataFrame 
+	(please, mind  individual and time indices).
+	\item Is the panel balanced or not?
+	\item Evaluate matrices of regression design \(\vecty, \matrixX\) (law is categorical!)
+	\item Fit Pooling, RE and FE (within-estimators) models
+	\begin{itemize}
+		\item via matrices of regression design
+		\item via regression specification
+	\end{itemize}
+	and report the fitting result.
+	\item For each model test the significance of coefficients. Perform both
+	non-robust and robust test.
+	\item Test overall significance of each model. Perform both
+	non-robust and robust test
+	\item Perform Hausman test
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+For the panel \texttt{EmplUK} consider a regression
+\begin{center}
+	log(emp) on log(wage), log(capital), log(output) 
+\end{center}
+\textbf{Remark}: here \texttt{firm} is an individual index, 
+\texttt{year} is a time index.
+\begin{enumerate}
+	\item write down the specification of a baseline model
+	\item import the dataset and set a MultiIndex over a pandas DataFrame 
+	(please, mind  individual and time indices).
+	\item Is the panel balanced or not?
+	\item Evaluate matrices of regression design \(\vecty, \matrixX\)
+	\item Fit Pooling, RE and FE (within-estimators) models
+	\begin{itemize}
+		\item via matrices of regression design
+		\item via regression specification
+	\end{itemize}
+	and report the fitting result.
+	\item For each model test the significance of coefficients. Perform both
+	non-robust and robust test.
+	\item Test overall significance of each model. Perform both
+	non-robust and robust test
+	\item Perform Hausman test
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+For the panel \texttt{Wages}\footnote{In the panel ed is time-invariant!} 
+consider a regression
+\begin{center}
+	lwage on ed, exp, exp\textsuperscript2, south, smsa, married, bluecol 
+\end{center}
+\textbf{Remark}: here \texttt{id} is an individual index, 
+\texttt{time} is a time index.
+\begin{enumerate}
+	\item write down the specification of a baseline model
+	\item import the dataset and set a MultiIndex over a pandas DataFrame 
+	(please, mind  individual and time indices).
+	\item Is the panel balanced or not?
+	\item Evaluate matrices of regression design \(\vecty, \matrixX\)
+	\item Fit Pooling, RE and FE (within-estimators) models
+	\begin{itemize}
+		\item via matrices of regression design
+		\item via regression specification
+	\end{itemize}
+	and report the fitting result.
+	\item For each model test the significance of coefficients. Perform both
+	non-robust and robust test.
+	\item Test overall significance of each model. Perform both
+	non-robust and robust test
+	\item Perform Hausman test
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Production costs of Turkish banks]
+For the panel \texttt{TurkishBanks} consider a regression
+\begin{center}
+	log(cost) on log(output) (+ another regressors)  
+\end{center}
+\textbf{Remark}: here \texttt{id} is an individual index, 
+\texttt{year} is a time index.
+\begin{enumerate}
+	\item write down the specification of a baseline model
+	\item import the dataset and set a MultiIndex over a pandas DataFrame 
+	(please, mind  individual and time indices).
+	\item Is the panel balanced or not?
+	\item Evaluate matrices of regression design \(\vecty, \matrixX\)
+	\item Fit Pooling, RE and FE (within-estimators) models
+	\begin{itemize}
+		\item via matrices of regression design
+		\item via regression specification
+	\end{itemize}
+	and report the fitting result.
+	\item For each model test the significance of coefficients. Perform both
+	non-robust and robust test.
+	\item Test overall significance of each model. Perform both
+	non-robust and robust test
+	\item Perform Hausman test
+\end{enumerate}
+\end{exercise}
+
+
+\section{Models with lags \& differences}
+
+\begin{exercise}
+For the panel \texttt{Grunfeld} consider a regression
+\begin{center}
+	\(\Delta\)inv on \(\Delta\)value \& \(\Delta\)capital
+\end{center}
+\textbf{Remark}: here \texttt{firm} is an individual index, 
+\texttt{year} is a time index.
+\begin{enumerate}
+	\item Fit Pooling, RE and FE (within-estimators) models
+	and report the fitting result.
+	\item For each model test the significance of coefficients. Perform both
+	non-robust and robust test.
+	\item Test overall significance of each model. Perform both
+	non-robust and robust test
+	\item Perform Hausman test
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+For the panel \texttt{Grunfeld} consider a regression
+\begin{center}
+	inv\textsubscript{it} on value\textsubscript{it}, value\textsubscript{i,t-1}, 
+	capital\textsubscript{it}, capital\textsubscript{i,t-1}
+\end{center}
+\textbf{Remark}: here \texttt{firm} is an individual index, 
+\texttt{year} is a time index.
+\begin{enumerate}
+	\item Fit Pooling, RE and FE (within-estimators) models
+	and report the fitting result.
+	\item For each model test the significance of coefficients. Perform both
+	non-robust and robust test.
+	\item Test overall significance of each model. Perform both
+	non-robust and robust test
+	\item Perform Hausman test
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+For the panel \texttt{EmplUK} consider a regression
+\begin{center}
+	\(\Delta\)log(emp) on \(\Delta\)log(wage), \(\Delta\)log(capital), \(\Delta\)log(output) 
+\end{center}
+\textbf{Remark}: here \texttt{firm} is an individual index, 
+\texttt{year} is a time index.
+\begin{enumerate}
+	\item Fit Pooling, RE and FE (within-estimators) models
+	and report the fitting result.
+	\item For each model test the significance of coefficients. Perform both
+	non-robust and robust test.
+	\item Test overall significance of each model. Perform both
+	non-robust and robust test
+	\item Perform Hausman test
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+For the panel \texttt{EmplUK} consider a regression
+\begin{center}
+	log(emp)\textsubscript{it} on log(wage)\textsubscript{it}, log(wage)\textsubscript{i,t-1}, 
+	log(capital)\textsubscript{it}, log(capital)\textsubscript{i,t-1},
+	log(output)\textsubscript{it}, log(output)\textsubscript{i,t-1}  
+\end{center}
+\textbf{Remark}: here \texttt{firm} is an individual index, 
+\texttt{year} is a time index.
+\begin{enumerate}
+	\item Fit Pooling, RE and FE (within-estimators) models
+	and report the fitting result.
+	\item For each model test the significance of coefficients. Perform both
+	non-robust and robust test.
+	\item Test overall significance of each model. Perform both
+	non-robust and robust test
+	\item Perform Hausman test
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Production costs of Turkish banks]
+For the panel \texttt{TurkishBanks} consider a regression
+\begin{center}
+	\(\Delta\)log(cost) on \(\Delta\)log(output) (+ another regressors)  
+\end{center}
+\textbf{Remark}: here \texttt{id} is an individual index, 
+\texttt{year} is a time index.
+\begin{enumerate}
+	\item Fit Pooling, RE and FE (within-estimators) models
+	and report the fitting result.
+	\item For each model test the significance of coefficients. Perform both
+	non-robust and robust test.
+	\item Test overall significance of each model. Perform both
+	non-robust and robust test
+	\item Perform Hausman test
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Production costs of Turkish banks]
+For the panel \texttt{TurkishBanks} consider a regression
+\begin{center}
+	log(cost)\textsubscript{it} on log(output)\textsubscript{it},  
+	log(output)\textsubscript{i,t-1}, (+ another regressors)  
+\end{center}
+\textbf{Remark}: here \texttt{id} is an individual index, 
+\texttt{year} is a time index.
+\begin{enumerate}
+	\item Fit Pooling, RE and FE (within-estimators) models
+	and report the fitting result.
+	\item For each model test the significance of coefficients. Perform both
+	non-robust and robust test.
+	\item Test overall significance of each model. Perform both
+	non-robust and robust test
+	\item Perform Hausman test
+\end{enumerate}
+\end{exercise}
+
+\end{document}

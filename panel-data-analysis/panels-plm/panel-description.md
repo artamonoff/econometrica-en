@@ -481,6 +481,8 @@ A panel of 595 individuals from 1976 to 1982, taken from the Panel Study of Inco
 - ed years of education.
 - black is the individual black? 
 - lwage logarithm of wage.
+- id individual index
+- time time index
 
 **Details**
 
