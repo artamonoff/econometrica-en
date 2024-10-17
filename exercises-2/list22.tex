@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath, amsfonts, amsthm, amssymb, amsopn, amscd}
+\usepackage{enumerate, bm}
+\usepackage[mathscr]{eucal}
+
+\usepackage{hyperref}
+\hypersetup{unicode=true,final=true,colorlinks=true}
+
+\theoremstyle{remark}
+%\newtheorem{exercise}{Упражнение}
+\newtheorem{exercise}{}[section]
+\renewcommand{\theexercise}{\textbf{\#\arabic{exercise}}}
+
+\input{econometrics-defs-en.tex}
+
+\title{List 02. Intro to Time series with Python}
+
+\author{Nikita V. Artamonov}
+
+\begin{document}
+
+\maketitle
+
+Python package: \texttt{pandas, numpy, yfinance, 
+pandas-datareader}\footnote{\texttt{conda install -c conda-forge yfinance pandas-datareader}\\
+\texttt{pip install yfinance pandas-datareader}}
+
+% \tableofcontents
+
+\begin{exercise}
+From FRED database load quarterly data on US GDP from 1990 Q1 up to now (series \(gdp\))
+\begin{enumerate}
+	\item set a right time index
+	\item visualize the series \(gdp\)
+	\item visualize the series \(\log(gdp)\)
+	\item visualize the series \(\Delta\log(gdp)\)
+	\item visualize the series \(\Delta^2\log(gdp)\)
+	\item draw a histogram for \(\log(gdp),\Delta\log(gdp)\)
+	\item draw a scatter plot \(\log(gdp_t)\) vs \(\log(gdp_{t-1})\)
+	\item draw a scatter plot \(\Delta\log(gdp_t)\) vs \(\Delta\log(gdp_{t-1})\)
+	\item calculate \[\corr(\log(gdp_t), \log(gdp_{t-1}))\] and test its significance (formally!)
+	\item calculate \[\corr(\Delta\log(gdp_t), \Delta\log(gdp_{t-1}))\] 
+	and test its significance (formally!) 
+\end{enumerate}
+\end{exercise}
+	
+\begin{exercise}
+From FRED database load monthly data on US M2 from 1990-01 up to now (series \(m2\)) 
+\begin{enumerate}
+	\item set a right time index
+	\item visualize the series \(m2\)
+	\item visualize the series \(\log(m2)\)
+	\item visualize the series \(\Delta\log(m2)\)
+	\item visualize the series \(\Delta^2\log(m2)\)
+	\item draw a histogram for \(\log(m2),\Delta\log(m2)\)
+	\item draw a scatter plot \(\log(m2_t)\) vs \(\log(m2_{t-1})\)
+	\item draw a scatter plot \(\Delta\log(m2_t)\) vs \(\Delta\log(m2_{t-1})\)
+	\item calculate \[\corr(\log(m2_t), \log(m2_{t-1}))\] and test its significance (formally!)
+	\item calculate \[\corr(\Delta\log(m2_t), \Delta\log(m2_{t-1}))\] and test its significance (formally!)
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+From FRED database load daily data on 3-month rate (\(rate1\)) and 10-year rate (\(rate2\))
+for US stock from 1990-01-01 up to now
+\begin{enumerate}
+	\item aggregate into monthly multivariate time series \(rates\)
+	\item visualize the series \(rates\) in two ways
+	\begin{itemize}
+		\item as subplots
+		\item on the same plot
+	\end{itemize}
+	\item visualize the series \(\Delta\log(rates)\) in two ways
+	\item visualize the series \(\Delta^2\log(rates)\) in two ways
+	\item draw a histogram for \(rates,\Delta rates,\Delta^2 rates\) in two ways
+	\item draw a histogram for \(rate1\) vs \(rate2\)
+	\item draw a scatter plot \(\Delta rate1 \) vs \(\Delta rate2\)
+	\item calculate \(\corr(rate1, rate2)\) and test its significance (formally!)
+	\item calculate \(\corr(\Delta rate1, \Delta rate2)\) and test its significance (formally!)
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+From \texttt{finance.yahoo.com} database load daily data on S\&P500 (series \(y_t\))
+from 2000-01-01 up to now
+\begin{enumerate}
+	\item visualize the series \(y\) 
+	\item visualize the series \(\Delta\log(y)\)
+	\item visualize the series \(\Delta^2\log(y)\)
+	\item draw a histogram for \(y,\Delta y,\Delta^2 y\)
+\end{enumerate}
+\end{exercise}
+
+\end{document}
