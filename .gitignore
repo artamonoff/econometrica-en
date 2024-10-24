@@ -1,5 +1,6 @@
 .DS_Store
 .Rhistory
+.RData
 
 # LaTeX auxiliary files
 *.aux
