@@ -1,0 +1,102 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath, amsfonts, amsthm, amssymb, amsopn, amscd}
+\usepackage{enumerate, bm}
+\usepackage[mathscr]{eucal}
+
+\usepackage{hyperref}
+\hypersetup{unicode=true,final=true,colorlinks=true}
+
+\theoremstyle{remark}
+%\newtheorem{exercise}{Упражнение}
+\newtheorem{exercise}{}[section]
+\renewcommand{\theexercise}{\textbf{\#\arabic{exercise}}}
+
+\input{econometrics-defs-en.tex}
+
+\title{List 03. ARIMA model with Python}
+
+\author{Nikita V. Artamonov}
+
+\begin{document}
+
+\maketitle
+
+Python package: \texttt{pandas, numpy, statsmodels, yfinance, 
+pandas-datareader, pmdarima, arch-py}\footnote{\texttt{conda install -c conda-forge yfinance pandas-datareader pmdarima arch-py}
+\texttt{pip install yfinance pandas-datareader pmdarima arch-py}}
+
+% \tableofcontents
+
+\begin{exercise}
+Consider historical data on natural logarithm of US GDP (quarterly data) from 1990 up to now.
+\begin{enumerate}
+	\item Plot ACF \& PACF 
+	\item Perform Unit root tests and choose the integration order
+	\item Fit ARIMA(1,1,1) and perform its diagnostic
+	\item Fit an optimal ARIMA model and perform its diagnostic
+	\item Forecast for 10 period forward
+\end{enumerate}
+\end{exercise}
+	
+\begin{exercise}
+Consider historical data on natural logarithm of US M2 (quarterly data) from 1990 up to now.
+\begin{enumerate}
+	\item Plot ACF \& PACF 
+	\item Perform Unit root tests and choose the integration order
+	\item Fit ARIMA(2,1,1) and perform its diagnostic
+	\item Fit an optimal ARIMA model and perform its diagnostic
+	\item Forecast for 10 periods forward
+\end{enumerate}
+\end{exercise}
+	
+\begin{exercise}
+Consider historical monthly data on 10-years rate from 1995 up to now.
+\begin{enumerate}
+	\item Plot ACF \& PACF 
+	\item Perform Unit root tests and choose the integration order
+	\item Fit ARIMA(1,1,2) and perform its diagnostic
+	\item Fit an optimal ARIMA model and perform its diagnostic
+	\item Forecast for 10 period sforward
+\end{enumerate}
+\end{exercise}
+	
+\begin{exercise}
+Consider historical monthly data on 3-month treasury bill from 1995 up to now.
+\begin{enumerate}
+	\item Plot ACF \& PACF 
+	\item Perform Unit root tests and choose the integration order
+	\item Fit ARIMA(1,1,0) and perform its diagnostic
+	\item Fit an optimal ARIMA model and perform its diagnostic
+	\item Forecast for 10 periods forward
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Consider log of daily observations on S\&P500 from 2010 to nowadays.
+\begin{enumerate}
+	\item Plot ACF \& PACF 
+	\item Perform Unit root tests and choose the integration order
+	\item Fit ARIMA(2,1,1) and perform its diagnostic
+	\item Fit an optimal ARIMA model and perform its diagnostic
+	\item Forecast for 10 periods forward
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Consider log of monthly data (end of month) on S\&P500 from 2010 to nowadays.
+\begin{enumerate}
+	\item Plot ACF \& PACF 
+	\item Perform Unit root tests and choose the integration order
+	\item Fit ARIMA(2,1,1) and perform its diagnostic
+	\item Fit an optimal ARIMA model and perform its diagnostic
+	\item Forecast for 10 periods forward
+\end{enumerate}
+\end{exercise}
+	
+
+\end{document}
