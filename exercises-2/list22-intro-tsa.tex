@@ -30,7 +30,9 @@ Python package: \texttt{pandas, numpy, yfinance,
 pandas-datareader}\footnote{\texttt{conda install -c conda-forge yfinance pandas-datareader}\\
 \texttt{pip install yfinance pandas-datareader}}
 
-% \tableofcontents
+\tableofcontents
+
+\section{Import, visualization, data processing}
 
 \begin{exercise}
 From FRED database load quarterly data on US GDP from 1990 Q1 up to now (series \(gdp\))
@@ -94,6 +96,60 @@ from 2000-01-01 up to now
 	\item visualize the series \(\Delta^2\log(y)\)
 	\item draw a histogram for \(y,\Delta y,\Delta^2 y\)
 \end{enumerate}
+\end{exercise}
+
+\section{Sample ACF \& PACF}
+
+The default significant level is 5\%
+
+\begin{exercise}
+From FRED database load quarterly data on US GDP from 1990 Q1 up to now (series \(gdp_t\))
+and let \(y_t=\log(gdp_t)\)
+\begin{itemize}
+		\item Draw ACF and PACF for \(y_t, \Delta y_t, \Delta^2 y_t\)
+		\item Report \(\{r(h)\}_{h=1^3}\) and \(\{r_{part}(h)\}_{h=1^3}\) 
+		\item Test the significance of \(r(3),r_{part}(3)\)
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}
+From FRED database load monthly data on US M2 from 1990-01 up to now (series \(m2\)) 
+and let \(y_t=\log(m2_t)\)
+\begin{itemize}
+	\item Draw ACF and PACF for \(y_t, \Delta y_t, \Delta^2 y_t\)
+	\item Report \(\{r(h)\}_{h=1^4}\) and \(\{r_{part}(h)\}_{h=1^4}\) 
+	\item Test the significance of \(r(4),r_{part}(4)\)
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}
+From FRED database load weekly data on 3-month rate  for US stock from 1990-01-01 up to now
+(series \(y_t\))
+\begin{itemize}
+	\item Draw ACF and PACF for \(y_t, \Delta y_t, \Delta^2 y_t\)
+	\item Report \(\{r(h)\}_{h=1^3}\) and \(\{r_{part}(h)\}_{h=1^3}\) 
+	\item Test the significance of \(r(3),r_{part}(3)\)
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}
+From FRED database load weekly data on 10-year rate  for US stock from 1990-01-01 up to now
+(series \(y_t\))
+\begin{itemize}
+	\item Draw ACF and PACF for \(y_t, \Delta y_t, \Delta^2 y_t\)
+	\item Report \(\{r(h)\}_{h=1^3}\) and \(\{r_{part}(h)\}_{h=1^3}\) 
+	\item Test the significance of \(r(3),r_{part}(3)\)
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}
+From \texttt{finance.yahoo.com} database load daily data on S\&P500 (series \(sp500\))
+from 2000-01-01 up to now and let \(y_t=\log(sp500)\)
+\begin{itemize}
+	\item Draw ACF and PACF for \(y_t, \Delta y_t, \Delta^2 y_t\)
+	\item Report \(\{r(h)\}_{h=1^3}\) and \(\{r_{part}(h)\}_{h=1^3}\) 
+	\item Test the significance of \(r(3),r_{part}(3)\)
+\end{itemize}
 \end{exercise}
 
 \end{document}
