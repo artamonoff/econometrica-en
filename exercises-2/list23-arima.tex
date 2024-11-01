@@ -26,77 +26,260 @@
 
 \maketitle
 
-Python package: \texttt{pandas, numpy, statsmodels, yfinance, 
-pandas-datareader, pmdarima, arch-py}\footnote{\texttt{conda install -c conda-forge yfinance pandas-datareader pmdarima arch-py}
-\texttt{pip install yfinance pandas-datareader pmdarima arch-py}}
+% Python package: \texttt{statsmodels, yfinance, 
+% pandas-datareader, pmdarima, pandas, numpy, arch-py}\footnote{\texttt{conda install -c conda-forge yfinance pandas-datareader pmdarima arch-py}
+% \texttt{pip install yfinance pandas-datareader pmdarima arch-py}}
 
 % \tableofcontents
 
 \begin{exercise}
-Consider historical data on natural logarithm of US GDP (quarterly data) from 1990 up to now.
+Let \(y_t\) be a natural logarithm of  US GDP (\textbf{quarterly data}) from 1995 up to now
 \begin{enumerate}
-	\item Plot ACF \& PACF 
-	\item Perform Unit root tests and choose the integration order
-	\item Fit ARIMA(1,1,1) and perform its diagnostic
-	\item Fit an optimal ARIMA model and perform its diagnostic
-	\item Forecast for 10 period forward
-\end{enumerate}
-\end{exercise}
-	
-\begin{exercise}
-Consider historical data on natural logarithm of US M2 (quarterly data) from 1990 up to now.
-\begin{enumerate}
-	\item Plot ACF \& PACF 
-	\item Perform Unit root tests and choose the integration order
-	\item Fit ARIMA(2,1,1) and perform its diagnostic
-	\item Fit an optimal ARIMA model and perform its diagnostic
-	\item Forecast for 10 periods forward
-\end{enumerate}
-\end{exercise}
-	
-\begin{exercise}
-Consider historical monthly data on 10-years rate from 1995 up to now.
-\begin{enumerate}
-	\item Plot ACF \& PACF 
-	\item Perform Unit root tests and choose the integration order
-	\item Fit ARIMA(1,1,2) and perform its diagnostic
-	\item Fit an optimal ARIMA model and perform its diagnostic
-	\item Forecast for 10 period sforward
-\end{enumerate}
-\end{exercise}
-	
-\begin{exercise}
-Consider historical monthly data on 3-month treasury bill from 1995 up to now.
-\begin{enumerate}
-	\item Plot ACF \& PACF 
-	\item Perform Unit root tests and choose the integration order
-	\item Fit ARIMA(1,1,0) and perform its diagnostic
-	\item Fit an optimal ARIMA model and perform its diagnostic
-	\item Forecast for 10 periods forward
+	\item Fitting of models of given order
+	\begin{enumerate}
+		\item Fit the following models
+		\begin{center}\small
+			\begin{tabular}{l|c|c}
+				Model & drift/trend  & specification\\ \hline
+				ARIMA(1,0,1) & + & \(y_t=\alpha_0+\alpha_1t+\phi y_{t-1}+u_t+\theta u_{t-1}\)\\
+				ARIMA(1,1,0) & + & \(\diff y_t=\alpha_0+\phi\diff y_{t-1}+u_t+\theta u_{t-1}\)\\
+				ARIMA(1,1,1) & - & \(\diff y_t=\phi\diff y_{t-1}+u_t+\theta u_{t-1}\) \\
+				ARIMA(1,2,0) & - & \(\diff^2 y_t=\phi\diff^2 y_{t-1}+u_t\)\\ \hline
+			\end{tabular}
+		\end{center} 
+		and evaluate forecasts for 10 periods forward. Is drift/trend significant?
+		\item Perform diagnostics of each model
+		\item Perform cross-validation of each model. Which one is preferable?
+	\end{enumerate}
+	\item Perform unit-root test and find an optimal integration order for  \(y_t\). 
+	\item Fitting of the <<optimal>> model
+	\begin{enumerate}
+		\item fit ARIMA of <<optimal>> order
+		\item perform its diagnostic
+		\item forecast for 10 periods forward.
+	\end{enumerate}
 \end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-Consider log of daily observations on S\&P500 from 2010 to nowadays.
+Let \(y_t\) be a natural logarithm of  US US M2 (\textbf{monthly data}) from 1995 up to now
+	\begin{enumerate}
+		\item Fitting of models of given order
+		\begin{enumerate}
+			\item Fit the following models
+			\begin{center}\small
+				\begin{tabular}{l|c}
+					Model & drift/trend \\ \hline
+					ARIMA(2,0,2) & + \\
+					ARIMA(2,1,0) & + \\
+					ARIMA(2,1,1) & - \\
+					ARIMA(1,2,0) & - \\ \hline
+				\end{tabular}
+			\end{center} 
+			and evaluate forecasts for 10 periods forward. Is drift/trend significant?
+			\item Perform diagnostics of each model
+			\item Perform cross-validation of each model. Which one is preferable?
+		\end{enumerate}
+		\item Perform unit-root test and find an optimal integration order for  \(y_t\). 
+		\item Fitting of the <<optimal>> model
+		\begin{enumerate}
+			\item fit ARIMA of <<optimal>> order
+			\item perform its diagnostic
+			\item forecast for 10 periods forward.
+		\end{enumerate}
+	\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Let \(y_t\) be a natural logarithm of  US US M2 (\textbf{weekly data}) from 1995 up to now
 \begin{enumerate}
-	\item Plot ACF \& PACF 
-	\item Perform Unit root tests and choose the integration order
-	\item Fit ARIMA(2,1,1) and perform its diagnostic
-	\item Fit an optimal ARIMA model and perform its diagnostic
-	\item Forecast for 10 periods forward
+	\item Fitting of models of given order
+	\begin{enumerate}
+		\item Fit the following models
+		\begin{center}\small
+			\begin{tabular}{l|c}
+				Model & drift/trend \\ \hline
+				ARIMA(3,0,2) & + \\
+				ARIMA(2,1,0) & + \\
+				ARIMA(2,1,1) & - \\
+				ARIMA(2,2,0) & - \\ \hline
+			\end{tabular}
+		\end{center} 
+		and evaluate forecasts for 10 periods forward. Is drift/trend significant?
+		\item Perform diagnostics of each model
+		\item Perform cross-validation of each model. Which one is preferable?
+	\end{enumerate}
+	\item Perform unit-root test and find an optimal integration order for  \(y_t\). 
+	\item Fitting of the <<optimal>> model
+	\begin{enumerate}
+		\item fit ARIMA of <<optimal>> order
+		\item perform its diagnostic
+		\item forecast for 10 periods forward.
+	\end{enumerate}
 \end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-Consider log of monthly data (end of month) on S\&P500 from 2010 to nowadays.
+Let \(y_t\) be a 10-years rate (treasury securities  with constant maturity  \textbf{monthly data}) from 2000 up to now
+	\begin{enumerate}
+		\item Fitting of models of given order
+		\begin{enumerate}
+			\item Fit the following models
+			\begin{center}\small
+				\begin{tabular}{l|c}
+					Model & drift/const \\ \hline
+					ARIMA(2,0,2) & - \\
+					ARIMA(2,0,2) & + \\
+					ARIMA(2,1,0) & + \\
+					ARIMA(2,1,1) & - \\
+					ARIMA(2,2,0) & - \\ \hline
+				\end{tabular}
+			\end{center} 
+			and evaluate forecasts for 10 periods forward. Is drift/const significant?
+			\item Perform diagnostics of each model
+			\item Perform cross-validation of each model. Which one is preferable?
+		\end{enumerate}
+		\item Perform unit-root test and find an optimal integration order for  \(y_t\). 
+		\item Fitting of the <<optimal>> model
+		\begin{enumerate}
+			\item fit ARIMA of <<optimal>> order
+			\item perform its diagnostic
+			\item forecast for 10 periods forward.
+		\end{enumerate}
+	\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Let \(y_t\) be a 10-years rate (treasury securities  with constant maturity  \textbf{daily data}) from 2010 up to now
 \begin{enumerate}
-	\item Plot ACF \& PACF 
-	\item Perform Unit root tests and choose the integration order
-	\item Fit ARIMA(2,1,1) and perform its diagnostic
-	\item Fit an optimal ARIMA model and perform its diagnostic
-	\item Forecast for 10 periods forward
+	\item Fitting of models of given order
+	\begin{enumerate}
+		\item Fit the following models
+		\begin{center}\small
+			\begin{tabular}{l|c}
+				Model & drift/const \\ \hline
+				ARIMA(3,0,2) & - \\
+				ARIMA(3,0,2) & + \\
+				ARIMA(3,1,0) & + \\
+				ARIMA(3,1,1) & - \\
+				ARIMA(2,2,0) & - \\ \hline
+			\end{tabular}
+		\end{center} 
+		and evaluate forecasts for 10 periods forward. Is drift/const significant?
+		\item Perform diagnostics of each model
+		\item Perform cross-validation of each model. Which one is preferable?
+	\end{enumerate}
+	\item Perform unit-root test and find an optimal integration order for  \(y_t\). 
+	\item Fitting of the <<optimal>> model
+	\begin{enumerate}
+		\item fit ARIMA of <<optimal>> order
+		\item perform its diagnostic
+		\item forecast for 10 periods forward.
+	\end{enumerate}
 \end{enumerate}
 \end{exercise}
-	
+
+\begin{exercise}
+Let \(y_t\) be a 3-month rate (treasury bill,  \textbf{monthly data}) from 2000 up to now
+\begin{enumerate}
+	\item Fitting of models of given order
+	\begin{enumerate}
+		\item Fit the following models
+		\begin{center}\small
+			\begin{tabular}{l|c}
+				Model & drift/const \\ \hline
+				ARIMA(2,0,2) & - \\
+				ARIMA(2,0,2) & + \\
+				ARIMA(2,1,0) & + \\
+				ARIMA(2,1,1) & - \\
+				ARIMA(2,2,0) & - \\ \hline
+			\end{tabular}
+		\end{center} 
+		and evaluate forecasts for 10 periods forward. Is drift/const significant?
+		\item Perform diagnostics of each model
+		\item Perform cross-validation of each model. Which one is preferable?
+	\end{enumerate}
+	\item Perform unit-root test and find an optimal integration order for  \(y_t\). 
+	\item Fitting of the <<optimal>> model
+	\begin{enumerate}
+		\item fit ARIMA of <<optimal>> order
+		\item perform its diagnostic
+		\item forecast for 10 periods forward.
+	\end{enumerate}
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Let \(y_t\) be a 3-month rate (treasury bill,  \textbf{daily data}) from 2010 up to now
+\begin{enumerate}
+	\item Fitting of models of given order
+	\begin{enumerate}
+		\item Fit the following models
+		\begin{center}\small
+			\begin{tabular}{l|c}
+				Model & drift/const \\ \hline
+				ARIMA(3,0,2) & - \\
+				ARIMA(3,0,2) & + \\
+				ARIMA(3,1,0) & + \\
+				ARIMA(3,1,1) & - \\
+				ARIMA(2,2,0) & - \\ \hline
+			\end{tabular}
+		\end{center} 
+		and evaluate forecasts for 10 periods forward. Is drift/const significant?
+		\item Perform diagnostics of each model
+		\item Perform cross-validation of each model. Which one is preferable?
+	\end{enumerate}
+	\item Perform unit-root test and find an optimal integration order for  \(y_t\). 
+	\item Fitting of the <<optimal>> model
+	\begin{enumerate}
+		\item fit ARIMA of <<optimal>> order
+		\item perform its diagnostic
+		\item forecast for 10 periods forward.
+	\end{enumerate}
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Let \(y_t\) be a natural logarithm of  S\&P (\textbf{daily data}) from 2010 up to now
+\begin{enumerate}
+	\item Fitting of models of given order
+	\begin{enumerate}
+		\item Fit the following models
+		\begin{center}\small
+			\begin{tabular}{l|c}
+				Model & drift/const \\ \hline
+				ARIMA(2,0,2) & - \\
+				ARIMA(2,0,2) & + \\
+				ARIMA(2,1,0) & + \\
+				ARIMA(2,1,1) & - \\
+				ARIMA(2,2,0) & - \\ \hline
+			\end{tabular}
+		\end{center} 
+		and evaluate forecasts for 10 periods forward. Is drift/const significant?
+		\item Perform diagnostics of each model
+		\item Perform cross-validation of each model. Which one is preferable?
+	\end{enumerate}
+	\item Perform unit-root test and find an optimal integration order for  \(y_t\). 
+	\item Fitting of the <<optimal>> model
+	\begin{enumerate}
+		\item fit ARIMA of <<optimal>> order
+		\item perform its diagnostic
+		\item forecast for 10 periods forward.
+	\end{enumerate}
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Write down specification the following model
+\begin{enumerate}
+	\item ARIMA(0,1,1) with and without drift
+	\item ARIMA(0,1,2) with and without drift
+	\item ARIMA(1,1,0) with and without drift
+	\item ARIMA(2,1,0) with and without drift
+	\item ARIMA(0,2,0) with and without drift
+	\item ARIMA(1,2,0) with and without drift
+	\item ARIMA(0,2,1) with and without drift
+\end{enumerate}
+\end{exercise}
 
 \end{document}
