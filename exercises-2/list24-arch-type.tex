@@ -1,0 +1,207 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath, amsfonts, amsthm, amssymb, amsopn, amscd}
+\usepackage{enumerate, bm}
+\usepackage[mathscr]{eucal}
+
+\usepackage{hyperref}
+\hypersetup{unicode=true,final=true,colorlinks=true}
+
+\theoremstyle{remark}
+%\newtheorem{exercise}{Упражнение}
+\newtheorem{exercise}{}[section]
+\renewcommand{\theexercise}{\textbf{\#\arabic{exercise}}}
+
+\input{econometrics-defs-en.tex}
+
+\title{List 04. AR with GARCH effects}
+
+\author{Nikita V. Artamonov}
+
+\begin{document}
+
+\maketitle
+
+% Python package: \texttt{pandas, numpy, statsmodels, yfinance, 
+% pandas-datareader, pmdarima, arch-py}\footnote{\texttt{conda install -c conda-forge yfinance pandas-datareader pmdarima arch-py}
+% \texttt{pip install yfinance pandas-datareader pmdarima arch}}
+
+% \tableofcontents
+
+\begin{exercise}
+Consider historical data on log-return of US GDP (quarterly data) from 1990 to nowadays.
+\begin{enumerate}
+\item Fit the following AR-GARCH(p,o,q) models
+\begin{center}
+\begin{tabular}{l|c}
+		Model & \(\lambda\) \\ \hline
+		AR(1)-GARCH(1,0,1) & 2 \\
+		AR(1)-GARCH(1,0,1) & 1 \\
+		AR(2)-GARCH(1,0,1) & 2 \\
+		AR(2)-GARCH(1,0,1) & 1 \\ \hline
+	\end{tabular}
+	\end{center} 
+	and evaluate 10 periods forward forecasts for \(y\) and for its vocalitilies.
+	\item Which model is preferable due to information criterions?
+	\item Perform cross-validation for the models. Which one is preferable?
+\end{enumerate}
+\end{exercise}
+	
+\begin{exercise}
+Consider historical data on log-return of US M2 (monthly data) from 1995 to nowadays.
+\begin{enumerate}
+	\item Fit the following AR-GARCH(p,o,q) models
+	\begin{center}
+	\begin{tabular}{l|c}
+		Model & \(\lambda\) \\ \hline
+		AR(1)-GARCH(1,0,1) & 2 \\
+		AR(1)-GARCH(1,0,1) & 1 \\
+		AR(2)-GARCH(1,0,1) & 2 \\
+		AR(2)-GARCH(1,0,1) & 1 \\ \hline
+	\end{tabular}
+	\end{center} 
+	and evaluate 10 periods forward forecasts for \(y\) and for its vocalitilies.
+	\item Which model is preferable due to information criterions?
+	\item Perform cross-validation for the models. Which one is preferable?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Consider historical data on log-return of US M2 (weekly data) from 2000 to nowadays.
+\begin{enumerate}
+	\item Fit the following AR-GARCH(p,o,q) models
+	\begin{center}
+	\begin{tabular}{l|c}
+		Model & \(\lambda\) \\ \hline
+		AR(1)-GARCH(1,0,1) & 2 \\
+		AR(1)-GARCH(1,0,1) & 1 \\
+		AR(2)-GARCH(1,0,1) & 2 \\
+		AR(2)-GARCH(1,0,1) & 1 \\ \hline
+	\end{tabular}
+	\end{center} 
+	and evaluate 10 periods forward forecasts for \(y\) and for its vocalitilies.
+	\item Which model is preferable due to information criterions?
+	\item Perform cross-validation for the models. Which one is preferable?
+\end{enumerate}
+\end{exercise}
+	
+\begin{exercise}
+Consider monthly data on first difference of 10-years rate from 1995 to nowadays.
+\begin{enumerate}
+	\item Fit the following AR-GARCH(p,o,q) models
+	\begin{center}
+	\begin{tabular}{l|c}
+		Model & \(\lambda\) \\ \hline
+		AR(1)-GARCH(1,0,1) & 2 \\
+		AR(1)-GARCH(1,0,1) & 1 \\
+		AR(2)-GARCH(1,0,1) & 2 \\
+		AR(2)-GARCH(1,0,1) & 1 \\ \hline
+	\end{tabular}
+	\end{center} 
+	and evaluate 10 periods forward forecasts for \(y\) and for its vocalitilies.
+	\item Which model is preferable due to information criterions?
+	\item Perform cross-validation for the models. Which one is preferable?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Consider weekly data on first difference of 10-years rate from 1995 to nowadays.
+\begin{enumerate}
+	\item Fit the following AR-GARCH(p,o,q) models
+	\begin{center}
+	\begin{tabular}{l|c}
+		Model & \(\lambda\) \\ \hline
+		AR(1)-GARCH(1,0,1) & 2 \\
+		AR(1)-GARCH(1,0,1) & 1 \\
+		AR(2)-GARCH(1,0,1) & 2 \\
+		AR(2)-GARCH(1,0,1) & 1 \\ \hline
+	\end{tabular}
+	\end{center} 
+	and evaluate 10 periods forward forecasts for \(y\) and for its vocalitilies.
+	\item Which model is preferable due to information criterions?
+	\item Perform cross-validation for the models. Which one is preferable?
+\end{enumerate}
+\end{exercise}
+	
+\begin{exercise}
+Consider monthly data on first difference on 3-month treasury bill from 1995 to nowadays.
+\begin{enumerate}
+	\item Fit the following AR-GARCH(p,o,q) models
+	\begin{center}
+	\begin{tabular}{l|c}
+		Model & \(\lambda\) \\ \hline
+		AR(1)-GARCH(1,0,1) & 2 \\
+		AR(1)-GARCH(1,0,1) & 1 \\
+		AR(2)-GARCH(1,0,1) & 2 \\
+		AR(2)-GARCH(1,0,1) & 1 \\ \hline
+	\end{tabular}
+	\end{center} 
+	and evaluate 10 periods forward forecasts for \(y\) and for its vocalitilies.
+	\item Which model is preferable due to information criterions?
+	\item Perform cross-validation for the models. Which one is preferable?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Consider weekly data on first difference on 3-month treasury bill from 1995 to nowadays.
+\begin{enumerate}
+	\item Fit the following AR-GARCH(p,o,q) models
+	\begin{center}
+	\begin{tabular}{l|c}
+		Model & \(\lambda\) \\ \hline
+		AR(1)-GARCH(1,0,1) & 2 \\
+		AR(1)-GARCH(1,0,1) & 1 \\
+		AR(2)-GARCH(1,0,1) & 2 \\
+		AR(2)-GARCH(1,0,1) & 1 \\ \hline
+	\end{tabular}
+	\end{center} 
+	and evaluate 10 periods forward forecasts for \(y\) and for its vocalitilies.
+	\item Which model is preferable due to information criterions?
+	\item Perform cross-validation for the models. Which one is preferable?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Consider log-return of daily observations on S\&P500 from 2010 to nowadays.
+\begin{enumerate}
+	\item Fit the following AR-GARCH(p,o,q) models
+	\begin{center}
+	\begin{tabular}{l|c}
+		Model & \(\lambda\) \\ \hline
+		AR(1)-GARCH(1,0,1) & 2 \\
+		AR(1)-GARCH(1,0,1) & 1 \\
+		AR(2)-GARCH(1,0,1) & 2 \\
+		AR(2)-GARCH(1,0,1) & 1 \\ \hline
+	\end{tabular}
+	\end{center} 
+	and evaluate 10 periods forward forecasts for \(y\) and for its vocalitilies.
+	\item Which model is preferable due to information criterions?
+	\item Perform cross-validation for the models. Which one is preferable?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Consider log-return of monthly data (end of month) on S\&P500 from 2010 to nowadays.
+\begin{enumerate}
+	\item Fit the following AR-GARCH(p,o,q) models
+	\begin{center}
+	\begin{tabular}{l|c}
+		Model & \(\lambda\) \\ \hline
+		AR(1)-GARCH(1,0,1) & 2 \\
+		AR(1)-GARCH(1,0,1) & 1 \\
+		AR(2)-GARCH(1,0,1) & 2 \\
+		AR(2)-GARCH(1,0,1) & 1 \\ \hline
+	\end{tabular}
+	\end{center} 
+	and evaluate 10 periods forward forecasts for \(y\) and for its vocalitilies.
+	\item Which model is preferable due to information criterions?
+	\item Perform cross-validation for the models. Which one is preferable?
+\end{enumerate}
+\end{exercise}
+	
+
+\end{document}
