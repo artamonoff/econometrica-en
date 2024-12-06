@@ -112,12 +112,12 @@ Import data and visualize it
 \end{exercise}
 
 \begin{exercise}[VECM]
-Рассмотрим \textbf{weekly} data from 2005 to nowadays on the following variables
+Consider \textbf{weekly} data from 2005 to nowadays on the following variables
 \begin{itemize}
 	\item 3-Month Treasury Bill
 	\item 6-Month Treasury Bill
 	\item Treasury Securities at 1-Year Constant Maturity
-	\item 1Treasury Securities at 10-Year Constant Maturity
+	\item Treasury Securities at 10-Year Constant Maturity
 \end{itemize}
 Import data and visualize it
 \begin{enumerate}
@@ -125,8 +125,47 @@ Import data and visualize it
 	\item Fit VECM of <<optimal>> order
 	\item Perform model's diagnostic
 	\item Forecast for 5 periods forward. Evaluate FEVD
-	\item Постройте IRF, использую исходное упорядочивание переменных
-	\item Проведите тест Гренджера на причинность
+	\item Evaluate IRF using default ordering
+	\item Perform Granger's causality test.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[VECM]
+Consider \textbf{monthly} data from 2000 to nowadays on the following variables
+\begin{itemize}
+	\item 3-Month Treasury Bill
+	\item 6-Month Treasury Bill
+	\item Treasury Securities at 1-Year Constant Maturity
+	\item Treasury Securities at 10-Year Constant Maturity
+\end{itemize}
+Import data and visualize it
+\begin{enumerate}
+	\item Find cointegration rank
+	\item Fit VECM of <<optimal>> order
+	\item Perform model's diagnostic
+	\item Forecast for 5 periods forward. Evaluate FEVD
+	\item Evaluate IRF using default ordering
+	\item Perform Granger's causality test.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[VECM]
+Consider \textbf{monthly} data from 2000 to nowadays on the following variables
+\begin{itemize}
+	\item 3-Month Treasury Bill
+	\item 6-Month Treasury Bill
+	\item Treasury Securities at 1-Year Constant Maturity
+	\item Treasury Securities at 10-Year Constant Maturity
+	\item log-return of M2
+\end{itemize}
+Import data and visualize it
+\begin{enumerate}
+	\item Find cointegration rank
+	\item Fit VECM of <<optimal>> order
+	\item Perform model's diagnostic
+	\item Forecast for 5 periods forward. Evaluate FEVD
+	\item Evaluate IRF using default ordering
+	\item Perform Granger's causality test.
 \end{enumerate}
 \end{exercise}
 	
