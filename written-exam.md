@@ -1,0 +1,21 @@
+# Topics for written exam
+
+- Panel regression analysis
+	- Baseline model: specification, components of the error term
+	- Baseline model provided different assumptions on the error tern: homoskedasticity, heteroskedasticity, autocorrelation
+	- Baseline model provided different assumptions: pooling, random effects, fixed effects
+	- Comparison tests (Hausman etc): null hypothesis, inferences, interpretation of test's report
+- ARIMA model: 
+	- Specification, 
+	- Stationarity of AR-part, invertibility of MA-part, 
+	- UR-tests (null hypothesis, inferences, interpretation of test's report)
+	- Model diagnostics (null hypothesis, inferences, interpretation of tests' report)
+	- Order selection methodology
+- (G)ARCH-type model: specification,
+- VAR model
+	- Specification, stationarity
+	- Choleski decomposition for the covariance matrix of the error term
+	- IRFs, FEVD
+	- Granger causality test
+	- Model diagnostics (null hypothesis, inferences, interpretation of tests' report)
+	- Order selection methodology
