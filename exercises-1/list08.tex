@@ -1,0 +1,104 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath, amsfonts, amsthm, amssymb, amsopn, amscd}
+\usepackage{enumerate, bm}
+\usepackage[mathscr]{eucal}
+
+\usepackage{hyperref}
+\hypersetup{unicode=true,final=true,colorlinks=true}
+
+\theoremstyle{remark}
+%\newtheorem{problem}{Упражнение}
+\newtheorem{problem}{}[section]
+\renewcommand{\theproblem}{\textbf{\#\arabic{problem}}}
+
+\input{econometrics-defs-en.tex}
+
+\title{List 08. Serial Correlation}
+
+\author{Nikita V. Artamonov}
+
+\begin{document}
+
+\maketitle
+
+% \tableofcontents
+
+% \section{Diagnostic tests}
+
+For each test calculate related critical values.
+
+\begin{problem}
+For the dataset \texttt{Mishkin} (monthly observations from 1950-2 to 1990-12) consider a regression
+\begin{center}
+	\texttt{$\Delta$pai3 on $\Delta$tb3, $\Delta$log(cpi)}.
+\end{center}
+\begin{enumerate}
+	\item Test the model for first order serial correlation
+	\item Test the model for second order serial correlation
+	\item perform robust and non-robust t-test and discuss results
+	\item perform robust and non-robust F-test for overall significance and discuss results
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{Consumption} (quarterly observations from 1947-1 to 1996-4) consider a regression
+\begin{center}
+	\texttt{$\Delta$log(ce) on $\Delta$log(yd)}.
+\end{center}
+\begin{enumerate}
+	\item Test the model for first order serial correlation
+	\item Test the model for second order serial correlation
+	\item perform robust and non-robust t-test and discuss results
+	\item perform robust and non-robust F-test for overall significance and discuss results
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{Tbrate} (quarterly observations from 1950-1 to 1996-4) consider a regression
+\begin{center}
+	\texttt{$\Delta$pi on $\Delta$y, $\Delta$r}.
+\end{center}
+\begin{enumerate}
+	\item Test the model for first order serial correlation
+	\item Test the model for second order serial correlation
+	\item perform robust and non-robust t-test and discuss results
+	\item perform robust and non-robust F-test for overall significance and discuss results
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{MoneyUS} (quarterly observations from 1954–01 to 1994–12) consider a regression
+\begin{center}
+	\texttt{infl on $\Delta$y, $\Delta$tbr, $\Delta$cpr, $\Delta$m}.
+\end{center}
+\begin{enumerate}
+	\item Test the model for first order serial correlation
+	\item Test the model for second order serial correlation
+	\item perform robust and non-robust t-test and discuss results
+	\item perform robust and non-robust F-test for overall significance and discuss results
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{Macrodat} (quarterly observations from 1959-1 to 2000-4) consider a regression
+\begin{center}
+	\texttt{lhur on $\Delta$log(punew), $\Delta$fyff, $\Delta$fygm3, $\Delta$fygt1, $\Delta$log(gdpjp)}.
+\end{center}
+\begin{enumerate}
+	\item Test the model for first order serial correlation
+	\item Test the model for second order serial correlation
+	\item perform robust and non-robust t-test and discuss results
+	\item perform robust and non-robust F-test for overall significance and discuss results
+\end{enumerate}
+\end{problem}
+
+% \section{Robust inferences}
+
+% For each text calculate related critical values.
+
+\end{document}

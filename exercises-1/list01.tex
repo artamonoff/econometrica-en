@@ -1,0 +1,332 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath, amsfonts, amsthm, amssymb, amsopn, amscd}
+\usepackage{enumerate}
+\usepackage[mathscr]{eucal}
+
+\usepackage{hyperref}
+\hypersetup{unicode=true,final=true,colorlinks=true}
+
+\theoremstyle{remark}
+%\newtheorem{problem}{Упражнение}
+\newtheorem{problem}{}[section]
+\renewcommand{\theproblem}{\textbf{\#\arabic{problem}}}
+
+\input{econometrics-defs-en.tex}
+
+\title{List 01. Into to Python}
+
+\author{Nikita V. Artamonov}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Pandas}
+
+\begin{problem}
+Load a dataset from \texttt{sleep75.csv} file.
+\begin{enumerate}
+	\item evaluate the dataset size (a number of observation \& a number of variables)
+	\item Fill the table of values of variables
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|} \hline
+			Obs & sleep & totwrk & age & male\\ \hline\hline
+			0 & & & & \\ \hline
+			5 & & & & \\ \hline
+			100 & & & & \\ \hline
+			700 & & & & \\ \hline
+		\end{tabular}
+	\end{center}
+	\item Calculate the correlation matrix for the following
+	variables: sleep, totwrk, age 
+	\item the table of values of variables
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|} \hline
+			Desc.Stat & sleep & totwrk & age & hrwage\\ \hline\hline
+			max & & & & \\ \hline
+			min & & & & \\ \hline
+			mean & & & & \\ \hline
+			median & & & & \\ \hline
+			st.dev & & & & \\ \hline
+			var (unbiased) & & & & \\ \hline
+			var (biased) & & & & \\ \hline
+			1st quartile & & & & \\ \hline
+			3rd quartile & & & & \\ \hline
+		\end{tabular}
+	\end{center}
+	Remark: 1st/3rd quartiles are 25\%/75\% quantiles respectively.
+	\item How many observations in the dataset 
+	\begin{enumerate}
+		\item with sleep>3000
+		\item with totwrk<2000
+		\item with age>40
+		\item with age<30
+	\end{enumerate}
+	\item How many observations in the dataset with totwrk=0? 
+	Who is this people?
+	\item Do we have evidence for missing values in the dataset?
+	How many do we have?
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+Load a dataset from \texttt{Electricity.csv} file.
+\begin{enumerate}
+	\item evaluate the dataset size (a number of observation \& a number of variables)
+	\item Fill the table of values of variables
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|} \hline
+			Obs & cost & q & pl & pk & pf \\ \hline\hline
+			1 & & & & & \\ \hline
+			15 & & & &  & \\ \hline
+			48 & & & & & \\ \hline
+			87 & & & & & \\ \hline
+		\end{tabular}
+	\end{center}
+	\item Calculate the correlation matrix for the following
+	variables: cost, q, pl, pk, pf 
+	\item the table of values of variables
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|} \hline
+			Desc.Stat & cost & q & pl & pk & pf\\ \hline\hline
+			max & & & & & \\ \hline
+			min & & & & & \\ \hline
+			mean & & & &  & \\ \hline
+			median & & & & & \\ \hline
+			st.dev & & & & & \\ \hline
+			var (unbiased) & & & & & \\ \hline
+			var (biased) & & & & & \\ \hline
+			1st quartile & & & & & \\ \hline
+			3rd quartile & & & & & \\ \hline
+		\end{tabular}
+	\end{center}
+	Remark: 1st/3rd quartiles are 25\%/75\% quantiles respectively.
+	\item How many observations in the dataset 
+		\begin{enumerate}
+			\item with cost>40
+			\item with q<5000
+			\item with q>4000
+			\item with 20<cost<50
+		\end{enumerate}
+	\item Do we have evidence for missing values in the dataset?
+	How many do we have?
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+Load a dataset from \texttt{wage2.csv} file.
+\begin{enumerate}
+	\item evaluate the dataset size (a number of observation \& a number of variables)
+	\item Fill the table of values of variables
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|c|} \hline
+			Obs & wage & hour& IQ & educ & exper & age \\ \hline\hline
+			1 & & & & & & \\ \hline
+			25 & & & &  & & \\ \hline
+			179 & & & & & & \\ \hline
+			800 & & & & & & \\ \hline
+		\end{tabular}
+	\end{center}
+	\item Calculate the correlation matrix for the following
+	variables: wage, hour, IQ, educ, exper 
+	\item the table of values of variables
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|c|} \hline
+			Desc.Stat & wage & hour& IQ & educ & exper & wage \\ \hline\hline
+			max & & & & & & \\ \hline
+			min & & & & & & \\ \hline
+			mean & & & & & & \\ \hline
+			median & & & & & & \\ \hline
+			st.dev & & & & & & \\ \hline
+			var (unbiased) & & & & & & \\ \hline
+			var (biased) & & & & & & \\ \hline
+			1st quartile & & & & & & \\ \hline
+			3rd quartile & & & & & & \\ \hline
+		\end{tabular}
+	\end{center}
+	Remark: 1st/3rd quartiles are 25\%/75\% quantiles respectively.
+	\item How many observations in the dataset 
+		\begin{enumerate}
+			\item with wage>1000
+			\item with age<40
+			\item with exper>10
+			\item with 100<IQ<130
+		\end{enumerate}
+	\item Do we have evidence for missing values in the dataset?
+	How many do we have?
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+Load a dataset from \texttt{Labour.csv} file. Create a new DataFrame
+containing the log-variables of the initial dataset.
+\end{problem}
+
+\begin{problem}
+Load a dataset from \texttt{Electricity.csv} file. Create a new DataFrame
+containing the log-variables of the initial dataset.
+\end{problem}
+
+\section{NumPy}
+
+\begin{problem}
+Consider matrices
+\begin{align*}
+	A&=\begin{pmatrix}
+		1 & -1 & 1 \\ 0 & 1 & -1 \\ -2 & 0 & 2
+	\end{pmatrix} &
+	B &= \begin{pmatrix}
+		2 \\ -1 \\ 0
+	\end{pmatrix} &
+	C &= \begin{pmatrix}
+		2 & 0 & 1 \\ 1 & 3 & -1
+	\end{pmatrix} &
+	D&= \begin{pmatrix}
+		5 & -1 & 0 \\ -1 & 1 & 0
+	\end{pmatrix}
+\end{align*}
+Calculate
+\begin{align*}
+	&\det(A) & &A^{-1} & &AB & &CA & &B^\top A &
+	&2C\pm 3D & &C^\top D & &D^\top C
+\end{align*}
+\end{problem}
+
+\begin{problem}
+Consider matrices
+\begin{align*}
+	A&=\begin{pmatrix}
+		0 & 1 & -2 & 6 \\ 1 & 0 & 1 & -1 \\ 
+		-1 & 1 & -2 & 0 \\ 1 & -1 & 2 & 0
+	\end{pmatrix} &
+	B &= \begin{pmatrix}
+		2 \\ -1 \\ 0 \\ 4
+	\end{pmatrix} &
+	C &= \begin{pmatrix}
+		2 & 0 & 1 & 1 \\ 1 & 3 & -1 & 3
+	\end{pmatrix}
+\end{align*}
+Calculate
+\begin{align*}
+	&\det(A) & &A^{-1} & &A^2 & &A^3 & &AB & &CA & &CB & &B^\top A
+\end{align*}
+\end{problem}
+
+\begin{problem}
+Consider 1-D arrays:
+\begin{align*}
+	x^\top &= \begin{pmatrix}
+	1 & 2.8 & 1.8 & 3 & 0.5 & 1.5
+	\end{pmatrix} \\
+	y^\top &= \begin{pmatrix}
+	3.8 & 2.1 & 5.3 & 3.4 & 0.2 & 0.1
+	\end{pmatrix} \\
+	z^\top &= \begin{pmatrix}
+	-0.4 & 0 & -4.3 & 6.8 & -3.3 & 2.7
+	\end{pmatrix}
+\end{align*}
+Perform the following manipulations: \(x+2\), \(x-3\), \(x+3y\), \(z^2\), \(z^3\),
+\(\log(x)\), \(\sqrt{x}\), \(|z|\), \(\log(|z|+1)\)
+\end{problem}
+
+\begin{problem}
+Solve a system of linear equation in matrix form \(A x=b\) with matrices
+\begin{align*}
+	A,b&=\begin{pmatrix}
+		1 & -2 \\ 2 & 1
+	\end{pmatrix}, \begin{pmatrix}
+		1 \\ -1
+	\end{pmatrix} & 
+	A,b&=\begin{pmatrix}
+		1 & 0 & 1 \\ 2 & 1 & 0 \\ 0 & 1 & 1 
+	\end{pmatrix}, \begin{pmatrix}
+		1 \\ 1 \\ 0
+	\end{pmatrix} &
+	A,b&=\begin{pmatrix}
+		0 & 1 & 1 \\ 1 & 1 & 1 \\ 1 & 1 & 0
+	\end{pmatrix}, \begin{pmatrix}
+		1 \\ 2 \\ -1
+	\end{pmatrix} 
+\end{align*}
+\end{problem}
+
+\section{Visualization}
+
+\begin{problem}
+Load a dataset from \texttt{sleep75.csv} file.
+\begin{enumerate}
+	\item Draw histogram for variables sleep, totwrk, age, hrwage, educ
+	\item Draw stacked histogram for sleep across male dummy
+	\item Draw stacked histogram for totwrk across south dummy
+	\item Draw stacked histogram for totwrk across smsa dummy
+	\item Draw scatter plot sleep vs totwrk
+	\item Draw scatter plot sleep vs totwrk with grouping by male dummy
+	\item Draw scatter plot sleep vs age
+	\item Draw scatter plot sleep vs age with grouping by south dummy
+	\item Draw scatter plot sleep vs edu
+	\item Draw scatter plot sleep vs edu with grouping by smsa dummy
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+Load a dataset from \texttt{Labour.csv} file.
+\begin{enumerate}
+	\item Draw histogram for variables output, capital, labour, wage
+	\item Draw histogram for log-variables output, capital, labour, wage
+	\item Draw scatter plots output vs another variables
+	\item Draw scatter plots log(output) vs log of another variables
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+Load a dataset from \texttt{Electricity.csv} file.
+\begin{enumerate}
+	\item Draw histogram for variables cost, q, pf, pk, pl
+	\item Draw histogram for log-variables cost, q, pf, pk, pl
+	\item Draw scatter plots cost vs another variables
+	\item Draw scatter plots log(cost) vs log of another variables
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+Load a dataset from \texttt{diamonds.csv} file.
+\begin{enumerate}
+	\item Draw histogram for variables price, carat
+	\item Draw histogram for log-variables price, carat
+	\item Draw stacked histogram for price across cut
+	\item Draw stacked histogram for carat across clarity 
+	\item Draw stacked histogram for log(price) across color
+	\item Draw stacked histogram for log(carat) across color
+	\item Draw scatter plot price vs carat
+	\item Draw scatter plot log-price vs log-carat
+	\item Draw scatter plot log-price vs log-carat with grouping by cut
+	\item Draw scatter plot log-price vs log-carat with grouping by color
+	\item Draw scatter plot log-price vs log-carat with grouping by clarity
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+Load a dataset from \texttt{Diamond.csv} file.
+\begin{enumerate}
+	\item Draw histogram for variables price, carat
+	\item Draw histogram for log-variables price, carat
+	\item Draw stacked histogram for price across certification
+	\item Draw stacked histogram for carat across clarity 
+	\item Draw stacked histogram for log(price) across colour
+	\item Draw stacked histogram for log(carat) across colour
+	\item Draw scatter plot price vs carat
+	\item Draw scatter plot log-price vs log-carat
+	\item Draw scatter plot log-price vs log-carat with grouping by certification
+	\item Draw scatter plot log-price vs log-carat with grouping by colour
+	\item Draw scatter plot log-price vs log-carat with grouping by clarity
+\end{enumerate}
+\end{problem}
+
+\end{document}

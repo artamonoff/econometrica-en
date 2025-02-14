@@ -1,0 +1,530 @@
+---
+title: 'List 07: Heteroskedasticity'
+author: "Nikita V. Artamonov"
+output:
+  pdf_document:
+    toc: yes
+    df_print: default
+    latex_engine: xelatex
+  html_document:
+    toc: yes
+    number_sections: yes
+    df_print: paged
+  word_document:
+    toc: yes
+---
+
+```{r, message=FALSE, echo=FALSE}
+library(stargazer)
+library(lmtest)
+library(car)
+library(ggplot2)
+library(sandwich)
+data(sleep75, wage1, wage2, Labour, Electricity, Diamond, diamonds, package = c('wooldridge', 'Ecdat', 'ggplot2') )
+sleep75$gender <- factor(sleep75$male, labels = c('female', 'male') )
+wage1$gender <- factor(wage1$female, labels = c('male', 'female') )
+```
+
+# Tests
+
+## sleep equation
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.digits.output <- 3
+my.digits <- 2
+sign.level <- 0.05
+df.name <- 'sleep75'
+df <- get(df.name)
+spec <- formula('sleep~totwrk+age+I(age^2)+male+smsa+south')
+
+mod <- lm(formula=spec, data=df)
+```
+
+For the dataset ` `r df.name` ` consider a regression
+**`r format(spec)`**. Its specification is
+\(sleep=\beta_0+\beta_1totwrk+\beta_2age+\beta_3age^2+\beta_4male+\beta_5smsa+\beta_6south+u\).
+
+BP-test is based on the following heteroskedasicity model \(Var(u|X)=f(x'\gamma)\)
+
+We test \(H_0:\gamma_1=\cdots=\gamma_k=0\) (homoskedastic error term)
+
+Fit the regression and perform BP-test. Result is
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.bp.test <- bptest(mod)
+my.bp.test
+```
+
+<span style="color: blue">significant level `r 100*sign.level`%</span>.
+
+Evaluate necessary critical value  **Round the answer to `r my.digits` decimal places.**
+
+```{r, echo=FALSE, comment=''}
+chi2.cr <- qchisq(p=1-sign.level, df=my.bp.test$parameter[[1]] )
+round(chi2.cr, digits = my.digits)
+```
+
+Conclusion
+
+```{r echo=FALSE, comment=''}
+if(my.bp.test$p.value[[1]]<sign.level) print('Evidence for heteroskedasticity') else print('Evidence for homoskedasticity')
+```
+
+## wage equation
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.digits.output <- 3
+my.digits <- 2
+sign.level <- 0.05
+df.name <- 'wage1'
+df <- get(df.name)
+spec <- formula('log(wage)~exper+I(exper^2)+female+married+smsa')
+
+mod <- lm(formula=spec, data=df)
+```
+
+For the dataset ` `r df.name` ` consider a regression
+**`r format(spec)`**.
+
+BP-test is based on the following heteroskedasicity model \(Var(u|X)=f(x'\gamma)\)
+
+We test \(H_0:\gamma_1=\cdots=\gamma_k=0\) (homoskedastic error term)
+
+Fit the regression and perform BP-test. Result is
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.bp.test <- bptest(mod)
+my.bp.test
+```
+
+<span style="color: blue">significant level `r 100*sign.level`%</span>.
+
+Evaluate necessary critical value  **Round the answer to `r my.digits` decimal places.**
+
+```{r, echo=FALSE, comment=''}
+chi2.cr <- qchisq(p=1-sign.level, df=my.bp.test$parameter[[1]] )
+round(chi2.cr, digits = my.digits)
+```
+
+Conclusion
+
+```{r echo=FALSE, comment=''}
+if(my.bp.test$p.value[[1]]<sign.level) print('Evidence for heteroskedasticity') else print('Evidence for homoskedasticity')
+```
+
+## output equation
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.digits.output <- 3
+my.digits <- 2
+sign.level <- 0.05
+df.name <- 'Labour'
+df <- get(df.name)
+spec <- formula('log(output)~log(capital)+log(labour)+I(log(capital)^2)+I(log(labour)^2)')
+
+mod <- lm(formula=spec, data=df)
+```
+
+For the dataset ` `r df.name` ` consider a regression
+**`r format(spec)`**. 
+
+BP-test is based on the following heteroskedasicity model \(Var(u|X)=f(x'\gamma)\)
+
+We test \(H_0:\gamma_1=\cdots=\gamma_k=0\) (homoskedastic error term)
+
+Fit the regression and perform BP-test. Result is
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.bp.test <- bptest(mod)
+my.bp.test
+```
+
+<span style="color: blue">significant level `r 100*sign.level`%</span>.
+
+Evaluate necessary critical value  **Round the answer to `r my.digits` decimal places.**
+
+```{r, echo=FALSE, comment=''}
+chi2.cr <- qchisq(p=1-sign.level, df=my.bp.test$parameter[[1]] )
+round(chi2.cr, digits = my.digits)
+```
+
+Conclusion
+
+```{r echo=FALSE, comment=''}
+if(my.bp.test$p.value[[1]]<sign.level) print('Evidence for heteroskedasticity') else print('Evidence for homoskedasticity')
+```
+
+## cost equation #1
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.digits.output <- 3
+my.digits <- 2
+sign.level <- 0.05
+df.name <- 'Electricity'
+df <- get(df.name)
+spec <- formula('log(cost)~log(q)+I(log(q)^2)+log(pf)+log(pl)+log(pk)')
+
+mod <- lm(formula=spec, data=df)
+```
+
+For the dataset ` `r df.name` ` consider a regression
+**`r format(spec)`**. 
+
+BP-test is based on the following heteroskedasicity model \(Var(u|X)=f(x'\gamma)\)
+
+We test \(H_0:\gamma_1=\cdots=\gamma_k=0\) (homoskedastic error term)
+
+Fit the regression and perform BP-test. Result is
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.bp.test <- bptest(mod)
+my.bp.test
+```
+
+<span style="color: blue">significant level `r 100*sign.level`%</span>.
+
+Evaluate necessary critical value  **Round the answer to `r my.digits` decimal places.**
+
+```{r, echo=FALSE, comment=''}
+chi2.cr <- qchisq(p=1-sign.level, df=my.bp.test$parameter[[1]] )
+round(chi2.cr, digits = my.digits)
+```
+
+Conclusion
+
+```{r echo=FALSE, comment=''}
+if(my.bp.test$p.value[[1]]<sign.level) print('Evidence for heteroskedasticity') else print('Evidence for homoskedasticity')
+```
+
+## cost equation #2
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.digits.output <- 3
+my.digits <- 2
+sign.level <- 0.05
+df.name <- 'Electricity'
+df <- get(df.name)
+spec <- formula('log(cost)~log(q)+I(log(q)^2)+log(pf)+log(pl)+log(pk)+log(pk)+I(log(pf)^2)+I(log(pl)^2)+I(log(pk)^2)')
+
+mod <- lm(formula=spec, data=df)
+```
+
+For the dataset ` `r df.name` ` consider a regression
+**`r format(spec)`**. 
+
+BP-test is based on the following heteroskedasicity model \(Var(u|X)=f(x'\gamma)\)
+
+We test \(H_0:\gamma_1=\cdots=\gamma_k=0\) (homoskedastic error term)
+
+Fit the regression and perform BP-test. Result is
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.bp.test <- bptest(mod)
+my.bp.test
+```
+
+<span style="color: blue">significant level `r 100*sign.level`%</span>.
+
+Evaluate necessary critical value  **Round the answer to `r my.digits` decimal places.**
+
+```{r, echo=FALSE, comment=''}
+chi2.cr <- qchisq(p=1-sign.level, df=my.bp.test$parameter[[1]] )
+round(chi2.cr, digits = my.digits)
+```
+
+Conclusion
+
+```{r echo=FALSE, comment=''}
+if(my.bp.test$p.value[[1]]<sign.level) print('Evidence for heteroskedasticity') else print('Evidence for homoskedasticity')
+```
+
+#  Robust inferences: t-test (HC s.e.)
+
+By default we use HC3 s.e.
+
+## output equation
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.digits.output <- 3
+my.digits <- 2
+sign.level <- 0.05
+df.name <- 'Labour'
+df <- get(df.name)
+spec <- formula('log(output)~log(capital)+log(labour)+I(log(capital)^2)+I(log(labour)^2)')
+
+mod <- lm(formula=spec, data=df)
+```
+
+For the dataset ` `r df.name` ` consider a regression
+**`r format(spec)`**. 
+
+Perform non-robust & robust t-test and compare results
+
+Non-robust t-test (OLS-s.e.)
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+t.test <- coeftest(mod)
+t.test
+```
+
+Robust t-test (HC3 s.e.)
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+robust.t.test <- coeftest(mod, vcov. = vcovHC)
+robust.t.test
+```
+
+<span style="color: blue">significant level `r 100*sign.level`%</span>.
+
+Which coefficients are significant?
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+regressors <- row.names(robust.t.test)
+sign.regressors <- NULL
+for(i in 1:nrow(robust.t.test) ) {
+  if(robust.t.test[i,4]<sign.level) sign.regressors <- c(sign.regressors, 'Significant') else sign.regressors <- c(sign.regressors, 'Insignificant')
+}
+# names(sign.regressors) <- rownames(t.test)
+print(data.frame(regressors, sign.regressors))
+```
+
+## cost equation
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.digits.output <- 3
+my.digits <- 2
+sign.level <- 0.01
+df.name <- 'Electricity'
+df <- get(df.name)
+spec <- formula('log(cost)~log(q)+I(log(q)^2)+log(pf)+log(pl)+log(pk)')
+
+mod <- lm(formula=spec, data=df)
+```
+
+For the dataset ` `r df.name` ` consider a regression
+**`r format(spec)`**. 
+
+Perform non-robust & robust t-test and compare results
+
+Non-robust t-test (OLS-s.e.)
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+t.test <- coeftest(mod)
+t.test
+```
+
+Robust t-test (HC3 s.e.)
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+robust.t.test <- coeftest(mod, vcov. = vcovHC)
+robust.t.test
+```
+
+<span style="color: blue">significant level `r 100*sign.level`%</span>.
+
+Which coefficients are significant?
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+regressors <- row.names(robust.t.test)
+sign.regressors <- NULL
+for(i in 1:nrow(robust.t.test) ) {
+  if(robust.t.test[i,4]<sign.level) sign.regressors <- c(sign.regressors, 'Significant') else sign.regressors <- c(sign.regressors, 'Insignificant')
+}
+# names(sign.regressors) <- rownames(t.test)
+print(data.frame(regressors, sign.regressors))
+```
+
+#   Robust inferences: F-test (HC estimator for the cov matrix)
+
+By default we use HC3 estimator for covariance matrix
+
+## output equation
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.digits.output <- 3
+my.digits <- 2
+sign.level <- 0.01
+df.name <- 'Labour'
+df <- get(df.name)
+spec <- formula('log(output)~log(capital)+log(labour)+I(log(capital)^2)+I(log(labour)^2)')
+
+mod <- lm(formula=spec, data=df)
+```
+
+For the dataset ` `r df.name` ` consider a regression **`r format(spec)`**. 
+
+Robust t-test
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+robust.t.test <- coeftest(mod, vcov. = vcovHC)
+robust.t.test
+```
+<span style="color: blue">significant level `r 100*sign.level`%</span>.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+regressor <- 'labour'
+```
+
+Let's test the significance of **`r regressor`**, i.e. \(H_0:\beta_{\log(labour)}=\beta_{\log^2(labour)}=0\)
+
+Result of non-robust F-test:
+```{r,comment='', echo=FALSE}
+testing.hypothesis <- c('log(labour)=0', 'I(log(capital)^2)=0')
+F.test <- linearHypothesis(mod, testing.hypothesis )
+# testing.result
+stargazer(F.test[2,5:6], summary = FALSE, type = 'text', rownames=FALSE)
+```
+
+Result of robust F-test:
+```{r,comment='', echo=FALSE}
+robust.F.test <- linearHypothesis(mod, testing.hypothesis, white.adjust='hc3')
+# testing.result
+stargazer(robust.F.test[2,3:4], summary = FALSE, type = 'text', rownames=FALSE)
+```
+
+Evaluate necessary critical value. **Round the answer to `r my.digits` decimal places.**
+
+```{r, echo=FALSE, comment=''}
+F.cr <- qf(p=1-sign.level, df1 = robust.F.test[2,2], df2 = df.residual(mod))
+round(F.cr, digits = my.digits)
+```
+
+Is **`r regressor`** significant?
+
+```{r,comment='', echo=FALSE}
+if(robust.F.test[2,4]<sign.level) print('Significant') else print('Insignificant')
+```
+
+## cost equation
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.digits.output <- 3
+my.digits <- 2
+sign.level <- 0.05
+df.name <- 'Electricity'
+df <- get(df.name)
+spec <- formula('log(cost)~log(q)+I(log(q)^2)+log(pf)+log(pl)+log(pk)+log(pk)+I(log(pf)^2)+I(log(pl)^2)+I(log(pk)^2)')
+
+mod <- lm(formula=spec, data=df)
+```
+
+For the dataset ` `r df.name` ` consider a regression
+**`r format(spec)`**. 
+
+Robust t-test
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+robust.t.test <- coeftest(mod, vcov. = vcovHC)
+robust.t.test
+```
+<span style="color: blue">significant level `r 100*sign.level`%</span>.
+
+### Hypothesis 1
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+regressor <- 'pl'
+```
+
+Let's test the significance of **`r regressor`**, i.e. \(H_0:\beta_{\log(pl)}=\beta_{\log^2(pl)}=0\)
+
+Result of non-robust F-test:
+```{r,comment='', echo=FALSE}
+testing.hypothesis <- c('log(pl)=0', 'I(log(pl)^2)=0')
+F.test <- linearHypothesis(mod, testing.hypothesis )
+# testing.result
+stargazer(F.test[2,5:6], summary = FALSE, type = 'text', rownames=FALSE)
+```
+
+Result of robust F-test:
+```{r,comment='', echo=FALSE}
+robust.F.test <- linearHypothesis(mod, testing.hypothesis, vcov. = vcovHC) #white.adjust='hc3')
+# testing.result
+stargazer(robust.F.test[2,3:4], summary = FALSE, type = 'text', rownames=FALSE)
+```
+
+Evaluate necessary critical value. **Round the answer to `r my.digits` decimal places.**
+
+```{r, echo=FALSE, comment=''}
+F.cr <- qf(p=1-sign.level, df1 = robust.F.test[2,2], df2 = df.residual(mod))
+round(F.cr, digits = my.digits)
+```
+
+Is **`r regressor`** significant?
+
+```{r,comment='', echo=FALSE}
+if(robust.F.test[2,4]<sign.level) print('Significant') else print('Insignificant')
+```
+
+### Hypothesis 2
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+regressor <- 'pl'
+```
+
+Let's test the significance of **`r regressor`**, i.e. \(H_0:\beta_{\log(pk)}=\beta_{\log^2(pk)}=0\)
+
+Result of non-robust F-test:
+```{r,comment='', echo=FALSE}
+testing.hypothesis <- c('log(pk)=0', 'I(log(pk)^2)=0')
+# testing.hypothesis <- c('log(pl)=0', 'log(pk)=0')
+F.test <- linearHypothesis(mod,  testing.hypothesis )
+# testing.result
+stargazer(F.test[2,5:6], summary = FALSE, type = 'text', rownames=FALSE)
+```
+
+Result of robust F-test:
+```{r,comment='', echo=FALSE}
+robust.F.test <- linearHypothesis(mod, testing.hypothesis, vcov. = vcovHC) #white.adjust='hc3')
+# testing.result
+stargazer(robust.F.test[2,3:4], summary = FALSE, type = 'text', rownames=FALSE)
+```
+
+Evaluate necessary critical value. **Round the answer to `r my.digits` decimal places.**
+
+```{r, echo=FALSE, comment=''}
+F.cr <- qf(p=1-sign.level, df1 = robust.F.test[2,2], df2 = df.residual(mod))
+round(F.cr, digits = my.digits)
+```
+
+Is **`r regressor`** significant?
+
+```{r,comment='', echo=FALSE}
+if(robust.F.test[2,4]<sign.level) print('Significant') else print('Insignificant')
+```
+
+### Hypothesis 3
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+regressor <- 'pl'
+```
+
+Let's test the significance of **`r regressor`**, i.e. \(H_0:\beta_{\log(pf)}=\beta_{\log^2(pf)}=0\)
+
+Result of non-robust F-test:
+```{r,comment='', echo=FALSE}
+testing.hypothesis <- c('log(pf)=0', 'I(log(pf)^2)=0')
+# testing.hypothesis <- c('log(pl)=0', 'log(pk)=0')
+F.test <- linearHypothesis(mod,  testing.hypothesis )
+# testing.result
+stargazer(F.test[2,5:6], summary = FALSE, type = 'text', rownames=FALSE)
+```
+
+Result of robust F-test:
+```{r,comment='', echo=FALSE}
+robust.F.test <- linearHypothesis(mod, testing.hypothesis, vcov. = vcovHC) #white.adjust='hc3')
+# testing.result
+stargazer(robust.F.test[2,3:4], summary = FALSE, type = 'text', rownames=FALSE)
+```
+
+Evaluate necessary critical value. **Round the answer to `r my.digits` decimal places.**
+
+```{r, echo=FALSE, comment=''}
+F.cr <- qf(p=1-sign.level, df1 = robust.F.test[2,2], df2 = df.residual(mod))
+round(F.cr, digits = my.digits)
+```
+
+Is **`r regressor`** significant?
+
+```{r,comment='', echo=FALSE}
+if(robust.F.test[2,4]<sign.level) print('Significant') else print('Insignificant')
+```

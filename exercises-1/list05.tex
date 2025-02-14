@@ -1,0 +1,116 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath, amsfonts, amsthm, amssymb, amsopn, amscd}
+\usepackage{enumerate, bm}
+\usepackage[mathscr]{eucal}
+
+\usepackage{hyperref}
+\hypersetup{unicode=true,final=true,colorlinks=true}
+
+\theoremstyle{remark}
+%\newtheorem{problem}{Упражнение}
+\newtheorem{problem}{}[section]
+\renewcommand{\theproblem}{\textbf{\#\arabic{problem}}}
+
+\input{econometrics-defs-en.tex}
+
+\title{List 05. Categorical regressors}
+
+\author{Nikita V. Artamonov}
+
+\begin{document}
+
+\maketitle
+
+% \tableofcontents
+
+\begin{problem}
+For the dataset \texttt{Diamond} consider a regression
+\begin{center}
+	\texttt{log(price) on carat, carat\textsuperscript{2}, certification}.
+\end{center}
+\begin{enumerate}
+	\item Evaluate descriptive statistics for the variables in the model
+	\item Draw a scatter plot \texttt{price vs carat} with coloring 
+	depending on certification
+	\item Draw a scatter plot \texttt{log(price) vs carat} with coloring 
+	depending on certification
+	\item Fit the regression
+	\item Interpret coefficient of the model
+	\item Test the significance of \texttt{certification}
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{Diamond} consider a regression
+\begin{center}
+	\texttt{log(price) on carat, carat\textsuperscript{2}, colour}.
+\end{center}
+\begin{enumerate}
+	\item Evaluate descriptive statistics for the variables in the model
+	\item Draw a scatter plot \texttt{price vs carat} with coloring 
+	depending on colour
+	\item Draw a scatter plot \texttt{log(price) vs carat} with coloring 
+	depending on colour
+	\item Fit the regression
+	\item Interpret coefficient of the model
+	\item Test the significance of \texttt{colour}
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{Diamond} consider a regression
+\begin{center}
+	\texttt{log(price) on carat, carat\textsuperscript{2}, clarity, certification}.
+\end{center}
+\begin{enumerate}
+	\item Evaluate descriptive statistics for the variables in the model
+	\item Draw a scatter plot \texttt{price vs carat} with coloring 
+	depending on clarity and point style depending on certification
+	\item Draw a scatter plot \texttt{log(price) vs carat} with coloring 
+	depending on clarity and point style depending on certification
+	\item Fit the regression
+	\item Interpret coefficient of the model
+	\item Test the significance of \texttt{clarity \& certification}
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{diamonds} consider a regression
+\begin{center}
+	\texttt{log(price) on carat, carat\textsuperscript{2}, color, cut, x, y, z}.
+\end{center}
+\begin{enumerate}
+	\item Evaluate descriptive statistics for the variables in the model
+	\item Draw a scatter plot \texttt{price vs carat} with coloring 
+	depending on color and point style depending on cut
+	\item Draw a scatter plot \texttt{log(price) vs carat} with coloring 
+	depending on color and point style depending on cut
+	\item Fit the regression
+	\item Interpret coefficient of the model
+	\item Test the significance of \texttt{cut \& color}
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{diamonds} consider a regression
+\begin{center}
+	\texttt{log(price) on carat, carat\textsuperscript{2}, clarity, cut, x, y, z}.
+\end{center}
+\begin{enumerate}
+	\item Evaluate descriptive statistics for the variables in the model
+	\item Draw a scatter plot \texttt{price vs carat} with coloring 
+	depending on clarity and point style depending on cut
+	\item Draw a scatter plot \texttt{log(price) vs carat} with coloring 
+	depending on clarity and point style depending on cut
+	\item Fit the regression
+	\item Interpret coefficient of the model
+	\item Test the significance of \texttt{certification}
+\end{enumerate}
+\end{problem}
+
+\end{document}

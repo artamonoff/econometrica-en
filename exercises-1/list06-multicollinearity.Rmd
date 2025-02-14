@@ -1,0 +1,389 @@
+---
+title: 'List 06: Multicollinearity'
+author: "Nikita V. Artamonov"
+output:
+  pdf_document:
+    toc: yes
+    df_print: default
+    latex_engine: xelatex
+  html_document:
+    toc: yes
+    toc_float:
+      collapsed: no
+    number_sections: yes
+    df_print: paged
+---
+
+```{r, message=FALSE, echo=FALSE}
+library(stargazer)
+library(lmtest)
+library(car)
+library(ggplot2)
+library(corrplot)
+library(ggcorrplot)
+library(sandwich)
+data(sleep75, wage1, wage2, Labour, Electricity, package = c('wooldridge', 'Ecdat') )
+sleep75$gender <- factor(sleep75$male, labels = c('female', 'male') )
+wage1$gender <- factor(wage1$female, labels = c('male', 'female') )
+```
+
+# sleep equation #1
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.digits.output <- 3
+my.digits <- 2
+sign.level <- 0.05
+
+df.name <- 'sleep75'
+df <- get(df.name)
+spec <- formula('sleep~1+I(totwrk/100)+I(totwrk^2/10000)+age+smsa+male')
+
+mod <- lm(formula=spec, data=df)
+```
+
+For the dataset ` `r df.name` ` consider a regreaion **`r format(spec)`**.
+
+Evaluate VIF for each regressors
+
+```{r, echo=FALSE, comment=''}
+vif(mod)
+```
+
+Calculate correlation matirx for regressosrs
+
+```{r, echo=FALSE, comment=''}
+round(cor(model.frame(mod)[,-1]), digits = my.digits.output )
+```
+
+and visualize it
+
+```{r, echo=FALSE, comment=''}
+ggcorrplot(cor(model.frame(mod)[,-1]), method = "square", lab=TRUE)
+```
+
+<span style="color: blue">Significant level is `r 100*sign.level`%</span>. Which coefficients are sognoficant 
+(perform non-robust t-test)?
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+t.test <- coeftest(mod)
+regressors <- row.names(t.test)
+sign.regressors <- NULL
+for(i in 2:nrow(t.test) ) {
+  if(t.test[i,4]<sign.level) sign.regressors <- c(sign.regressors, regressors[i])
+}
+print(sign.regressors)
+```
+
+We test the significance of working time, i.e. the hypothesis \(H_0:\beta_{totwrk/100}=\beta_{totwrk^2/10000}=0\).
+Testing result (Non-robust test):
+
+```{r,comment='', echo=FALSE}
+testing.result <- linearHypothesis(mod, c('I(totwrk/100)=0', 'I(totwrk^2/10000)=0'))
+# testing.result
+stargazer(testing.result[2,5:6], summary = FALSE, type = 'text', rownames=FALSE)
+```
+
+Calculate the required critical value. **Round to `r my.digits` decimal places.**
+
+```{r, echo=FALSE, comment=''}
+F.cr <- qf(p=1-sign.level, df1 = testing.result[2,3], df2 = df.residual(mod))
+round(F.cr, digits = my.digits)
+```
+
+Inferences:
+
+```{r,comment='', echo=FALSE}
+if(testing.result[2,6]<sign.level) print('We reject the null hypothesis') else print('We do not reject the null hypothesis')
+```
+
+**At first glance we have a contradiction.** It is caused by multicollinearity.
+
+# sleep equation #2
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.digits.output <- 3
+my.digits <- 2
+sign.level <- 0.05
+
+df.name <- 'sleep75'
+df <- get(df.name)
+spec <- formula('sleep~totwrk+age+I(age^2)+smsa+male+union')
+
+mod <- lm(formula=spec, data=df)
+```
+
+For the dataset ` `r df.name` ` consider a regreaion **`r format(spec)`**.
+
+Evaluate VIF for each regressors
+
+```{r, echo=FALSE, comment=''}
+vif(mod)
+```
+
+Calculate correlation matirx for regressosrs
+
+```{r, echo=FALSE, comment=''}
+round(cor(model.frame(mod)[,-1]), digits = my.digits.output )
+```
+
+and visualize it
+
+```{r, echo=FALSE, comment=''}
+ggcorrplot(cor(model.frame(mod)[,-1]), method = "square", lab=TRUE)
+```
+
+<span style="color: blue">Significant level is `r 100*sign.level`%</span>. Which coefficients are sognoficant 
+(perform non-robust t-test)?
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+t.test <- coeftest(mod)
+regressors <- row.names(t.test)
+sign.regressors <- NULL
+for(i in 2:nrow(t.test) ) {
+  if(t.test[i,4]<sign.level) sign.regressors <- c(sign.regressors, regressors[i])
+}
+print(sign.regressors)
+```
+
+We test the significance of age, i.e. the hypothesis \(H_0:\beta_{age}=\beta_{age^2}=0\).
+Testing result (Non-robust test):
+
+```{r,comment='', echo=FALSE}
+testing.result <- linearHypothesis(mod, c('age=0', 'I(age^2)=0'))
+# testing.result
+stargazer(testing.result[2,5:6], summary = FALSE, type = 'text', rownames=FALSE)
+```
+
+Calculate the required critical value. **Round to `r my.digits` decimal places.**
+
+```{r, echo=FALSE, comment=''}
+F.cr <- qf(p=1-sign.level, df1 = testing.result[2,3], df2 = df.residual(mod))
+round(F.cr, digits = my.digits)
+```
+
+Inferences:
+
+```{r,comment='', echo=FALSE}
+if(testing.result[2,6]<sign.level) print('We reject the null hypothesis') else print('We do not reject the null hypothesis')
+```
+
+**At first glance we have a contradiction.** It is caused by multicollinearity.
+
+# sleep equation #3
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.digits.output <- 3
+my.digits <- 2
+sign.level <- 0.05
+
+df.name <- 'sleep75'
+df <- get(df.name)
+# spec <- formula('sleep~totwrk+south+I(totwrk*south)+age+male+smsa+marr')
+spec <- formula('sleep~totwrk+age+smsa+south+I(totwrk*south)+I(age*south)+I(smsa*south)')
+
+mod <- lm(formula=spec, data=df)
+```
+
+For the dataset ` `r df.name` ` consider a regreaion **`r format(spec)`**.
+
+Evaluate VIF for each regressors
+
+```{r, echo=FALSE, comment=''}
+vif(mod)
+```
+
+Calculate correlation matirx for regressosrs
+
+```{r, echo=FALSE, comment=''}
+round(cor(model.frame(mod)[,-1]), digits = my.digits.output )
+```
+
+and visualize it
+
+```{r, echo=FALSE, comment=''}
+ggcorrplot(cor(model.frame(mod)[,-1]), method = "square", lab=TRUE)
+```
+
+<span style="color: blue">Significant level is `r 100*sign.level`%</span>. Which coefficients are sognoficant 
+(perform non-robust t-test)?
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+t.test <- coeftest(mod)
+regressors <- row.names(t.test)
+sign.regressors <- NULL
+for(i in 2:nrow(t.test) ) {
+  if(t.test[i,4]<sign.level) sign.regressors <- c(sign.regressors, regressors[i])
+}
+print(sign.regressors)
+```
+
+We test the significance of geographical dummy, i.e. the hypothesis 
+\(H_0:\beta_{south}=\beta_{totwrk*south}=\beta_{age * south}=\beta_{smsa * south}=0\).
+Testing result (Non-robust test):
+
+```{r,comment='', echo=FALSE}
+testing.result <- linearHypothesis(mod, c('south=0', 'I(totwrk * south)=0', 'I(age * south)=0', 'I(smsa * south)=0'))
+# testing.result
+stargazer(testing.result[2,5:6], summary = FALSE, type = 'text', rownames=FALSE)
+```
+
+Calculate the required critical value. **Round to `r my.digits` decimal places.**
+
+```{r, echo=FALSE, comment=''}
+F.cr <- qf(p=1-sign.level, df1 = testing.result[2,3], df2 = df.residual(mod))
+round(F.cr, digits = my.digits)
+```
+
+Inferences:
+
+```{r,comment='', echo=FALSE}
+if(testing.result[2,6]<sign.level) print('We reject the null hypothesis') else print('We do not reject the null hypothesis')
+```
+
+**At first glance we have a contradiction.** It is caused by multicollinearity.
+
+# wage equation #1
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.digits.output <- 3
+my.digits <- 2
+sign.level <- 0.05
+
+df.name <- 'wage2'
+df <- get(df.name)
+spec <- formula('log(wage)~age+I(age^2)+IQ+married+south+urban')
+
+mod <- lm(formula=spec, data=df)
+```
+
+For the dataset ` `r df.name` ` consider a regreaion **`r format(spec)`**.
+
+Evaluate VIF for each regressors
+
+```{r, echo=FALSE, comment=''}
+vif(mod)
+```
+
+Calculate correlation matirx for regressosrs
+
+```{r, echo=FALSE, comment=''}
+round(cor(model.frame(mod)[,-1]), digits = my.digits.output )
+```
+
+and visualize it
+
+```{r, echo=FALSE, comment=''}
+ggcorrplot(cor(model.frame(mod)[,-1]), method = "square", lab=TRUE)
+```
+
+<span style="color: blue">Significant level is `r 100*sign.level`%</span>. Which coefficients are sognoficant 
+(perform non-robust t-test)?
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+t.test <- coeftest(mod)
+regressors <- row.names(t.test)
+sign.regressors <- NULL
+for(i in 2:nrow(t.test) ) {
+  if(t.test[i,4]<sign.level) sign.regressors <- c(sign.regressors, regressors[i])
+}
+print(sign.regressors)
+```
+
+We test the significance of age, i.e. the hypothesis \(_0:\beta_{age}=\beta_{age^2}=0\).
+Testing result (Non-robust test):
+
+```{r,comment='', echo=FALSE}
+testing.result <- linearHypothesis(mod, c('age=0', 'I(age^2)=0'))
+# testing.result
+stargazer(testing.result[2,5:6], summary = FALSE, type = 'text', rownames=FALSE)
+```
+
+Calculate the required critical value. **Round to `r my.digits` decimal places.**
+
+```{r, echo=FALSE, comment=''}
+F.cr <- qf(p=1-sign.level, df1 = testing.result[2,3], df2 = df.residual(mod))
+round(F.cr, digits = my.digits)
+```
+
+Inferences:
+
+```{r,comment='', echo=FALSE}
+if(testing.result[2,6]<sign.level) print('We reject the null hypothesis') else print('We do not reject the null hypothesis')
+```
+
+**At first glance we have a contradiction.** It is caused by multicollinearity.
+
+# wage equation #2 (structural breaks)
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+my.digits.output <- 3
+my.digits <- 2
+sign.level <- 0.01
+
+df.name <- 'wage2'
+df <- get(df.name)
+spec <- formula('log(wage)~age+IQ+south+urban+I(age*urban)+I(IQ*urban)+I(south*urban)')
+
+mod <- lm(formula=spec, data=df)
+```
+
+Для набора данных ` `r df.name` ` рассмотрим линейную регрессию
+**`r format(spec)`**.
+
+For the dataset ` `r df.name` ` consider a regreaion **`r format(spec)`**.
+
+Evaluate VIF for each regressors
+
+```{r, echo=FALSE, comment=''}
+vif(mod)
+```
+
+Calculate correlation matirx for regressosrs
+
+```{r, echo=FALSE, comment=''}
+round(cor(model.frame(mod)[,-1]), digits = my.digits.output )
+```
+
+and visualize it
+
+```{r, echo=FALSE, comment=''}
+ggcorrplot(cor(model.frame(mod)[,-1]), method = "square", lab=TRUE)
+```
+
+<span style="color: blue">Significant level is `r 100*sign.level`%</span>. Which coefficients are sognoficant 
+(perform non-robust t-test)?
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=''}
+t.test <- coeftest(mod)
+regressors <- row.names(t.test)
+sign.regressors <- NULL
+for(i in 2:nrow(t.test) ) {
+  if(t.test[i,4]<sign.level) sign.regressors <- c(sign.regressors, regressors[i])
+}
+print(sign.regressors)
+```
+
+We test the significance of dwelling dummy, i.e. the hypothesis
+\(H_0:\beta_{urban}=\beta_{age*urban}=\beta_{IQ*urban}=\beta_{south*urban}=0\).
+Testing result (Non-robust test):
+
+```{r,comment='', echo=FALSE}
+testing.result <- linearHypothesis(mod, c('urban=0', 'I(age * urban)=0', 'I(IQ * urban)=0', 'I(south * urban)=0'))
+# testing.result
+stargazer(testing.result[2,5:6], summary = FALSE, type = 'text', rownames=FALSE)
+```
+
+Calculate the required critical value. **Round to `r my.digits` decimal places.**
+
+```{r, echo=FALSE, comment=''}
+F.cr <- qf(p=1-sign.level, df1 = testing.result[2,3], df2 = df.residual(mod))
+round(F.cr, digits = my.digits)
+```
+
+Inferences:
+
+```{r,comment='', echo=FALSE}
+if(testing.result[2,6]<sign.level) print('We reject the null hypothesis') else print('We do not reject the null hypothesis')
+```
+
+**At first glance we have a contradiction.** It is caused by multicollinearity.
