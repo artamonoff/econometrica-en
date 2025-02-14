@@ -7,6 +7,8 @@
 |`README.md`|This file|
 |`datasets`|Datasets in CSV format with description|
 
+More datasets can be found [here](https://github.com/vincentarelbundock/Rdatasets)
+
 ## Necessary packages
 
 |Package|Description|
