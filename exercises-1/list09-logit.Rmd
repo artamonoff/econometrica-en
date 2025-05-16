@@ -1,5 +1,5 @@
 ---
-title: "List 09: logit/probit-регрессион"
+title: "List 09: logit/probit-regression"
 author: "N.V. Artamonov"
 output:
   pdf_document:
