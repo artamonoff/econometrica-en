@@ -433,7 +433,7 @@ regr[[2]] <- update(regr[[1]], formula. = ~.-WE-KL6-K618)
 regr[[3]] <- update(regr[[1]], formula. = ~.-WE-KL6-K618-log(FAMINC))
 regr[[4]] <- update(regr[[1]], formula. = ~.-WE-KL6-K618-log(FAMINC)-WA-I(WA^2))
 stargazer(regr, type='text', digits=my.digits.output, digit.separator = '', 
-          dep.var.caption = 'Зависимая переменonя', df=FALSE)
+          dep.var.caption = 'Dependent variable', df=FALSE)
 my.logL.null <- -regr[[1]]$null.deviance/2
 my.logL <- NULL
 for(i in 1:length(regr)) my.logL <- c(my.logL, -deviance(regr[[i]])/2 )
@@ -495,7 +495,7 @@ regr[[2]] <- update(regr[[1]], formula. = ~.-WA-I(WA^2) )
 regr[[3]] <- update(regr[[1]], formula. = ~.-WA-I(WA^2)-WE )
 regr[[4]] <- update(regr[[1]], formula. = ~.-WA-I(WA^2)-WE-log(FAMINC)-KL6)
 stargazer(regr, type='text', digits=my.digits.output, digit.separator = '', 
-          dep.var.caption = 'Зависимая переменonя', df=TRUE )
+          dep.var.caption = 'Dependent variable', df=TRUE )
 my.logL.null <- -regr[[1]]$null.deviance/2
 my.logL <- NULL
 for(i in 1:length(regr)) my.logL <- c(my.logL, -deviance(regr[[i]])/2 )
