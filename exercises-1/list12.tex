@@ -1,0 +1,385 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath, amsfonts, amsthm, amssymb, amsopn, amscd}
+\usepackage{enumerate, bm}
+\usepackage[mathscr]{eucal}
+
+\usepackage{hyperref}
+\hypersetup{unicode=true,final=true,colorlinks=true}
+
+\theoremstyle{remark}
+%\newtheorem{problem}{Упражнение}
+\newtheorem{problem}{}[section]
+\renewcommand{\theproblem}{\textbf{\#\arabic{problem}}}
+
+\input{econometrics-defs-en.tex}
+
+\title{List 12. Multinomial Logit}
+
+\author{Nikita V. Artamonov}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Regression fitting}
+
+\begin{problem}
+For the dataset \texttt{Diamond} consider a regression
+\begin{center}
+	\texttt{certification on price \& carat}.
+\end{center}
+\begin{enumerate}
+	\item write down the specification
+	\item Evaluate matrices of regression design \(\vecty, \matrixX\)
+	\item Evaluate coefficients of the fitted model via 
+	regression specification (via formula)
+	\item Evaluate coefficients of the fitted model via 
+	matrices of regression design
+	\item Interpret coefficients of the fitted model
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{Diamond} consider a regression
+\begin{center}
+	\texttt{colour on log(price) \& carat}.
+\end{center}
+\begin{enumerate}
+	\item write down the specification
+	\item Evaluate matrices of regression design \(\vecty, \matrixX\)
+	\item Evaluate coefficients of the fitted model via 
+	regression specification (via formula)
+	\item Evaluate coefficients of the fitted model via 
+	matrices of regression design
+	\item Interpret coefficients of the fitted model
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{Diamond} consider a regression
+\begin{center}
+	\texttt{clarity on price, carat, carat\textsuperscript{2}}.
+\end{center}
+\begin{enumerate}
+	\item write down the specification
+	\item Evaluate matrices of regression design \(\vecty, \matrixX\)
+	\item Evaluate coefficients of the fitted model via 
+	regression specification (via formula)
+	\item Evaluate coefficients of the fitted model via 
+	matrices of regression design
+	\item Interpret coefficients of the fitted model
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{diamonds} consider a regression
+\begin{center}
+	\texttt{cut on log(price), carat, x, y, z}.
+\end{center}
+\begin{enumerate}
+	\item write down the specification
+	\item Evaluate matrices of regression design \(\vecty, \matrixX\)
+	\item Evaluate coefficients of the fitted model via 
+	regression specification (via formula)
+	\item Evaluate coefficients of the fitted model via 
+	matrices of regression design
+	\item Interpret coefficients of the fitted model
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{diamonds} consider a regression
+\begin{center}
+	\texttt{color on log(price), carat, carat\textsuperscript{2}, x, y, z}.
+\end{center}
+\begin{enumerate}
+	\item write down the specification
+	\item Evaluate matrices of regression design \(\vecty, \matrixX\)
+	\item Evaluate coefficients of the fitted model via 
+	regression specification (via formula)
+	\item Evaluate coefficients of the fitted model via 
+	matrices of regression design
+	\item Interpret coefficients of the fitted model
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{diamonds} consider a regression
+\begin{center}
+	\texttt{clarity on log(price), log\textsuperscript{2}(price), carat, x, y, z}.
+\end{center}
+\begin{enumerate}
+	\item write down the specification
+	\item Evaluate matrices of regression design \(\vecty, \matrixX\)
+	\item Evaluate coefficients of the fitted model via 
+	regression specification (via formula)
+	\item Evaluate coefficients of the fitted model via 
+	matrices of regression design
+	\item Interpret coefficients of the fitted model
+\end{enumerate}
+\end{problem}
+
+\section{z-test}
+
+For each text calculate related critical values.
+
+\subsection{Significance}
+
+\begin{problem}
+For the dataset \texttt{Diamond} consider a regression
+\begin{center}
+	\texttt{certification on price \& carat}.
+\end{center}
+\begin{enumerate}
+	\item Fit the regression
+	\item For each coefficient evaluate s.e., z-stat \& p-value for z-test on the significance 
+	\item Evaluate a related critical value
+	\item For each coefficient perform z-test for the significance and state a testing hypothesis. 
+	Make conclusions
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{Diamond} consider a regression
+\begin{center}
+	\texttt{colour on price \& carat}.
+\end{center}
+\begin{enumerate}
+	\item Fit the regression
+	\item For each coefficient evaluate s.e., z-stat \& p-value for z-test on the significance 
+	\item Evaluate a related critical value
+	\item For each coefficient perform z-test for the significance and state a testing hypothesis. 
+	Make conclusions
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{Diamond} consider a regression
+\begin{center}
+	\texttt{clarity on price \& carat}.
+\end{center}
+\begin{enumerate}
+	\item Fit the regression
+	\item For each coefficient evaluate s.e., z-stat \& p-value for z-test on the significance 
+	\item Evaluate a related critical value
+	\item For each coefficient perform z-test for the significance and state a testing hypothesis. 
+	Make conclusions
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{diamonds} consider a regression
+\begin{center}
+	\texttt{cut on log(price), carat, x, y, z}.
+\end{center}
+\begin{enumerate}
+	\item Fit the regression
+	\item For each coefficient evaluate s.e., z-stat \& p-value for z-test on the significance 
+	\item Evaluate a related critical value
+	\item For each coefficient perform z-test for the significance and state a testing hypothesis. 
+	Make conclusions
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{diamonds} consider a regression
+\begin{center}
+	\texttt{color on log(price), carat, x, y, z}.
+\end{center}
+\begin{enumerate}
+	\item Fit the regression
+	\item For each coefficient evaluate s.e., z-stat \& p-value for z-test on the significance 
+	\item Evaluate a related critical value
+	\item For each coefficient perform z-test for the significance and state a testing hypothesis. 
+	Make conclusions
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{diamonds} consider a regression
+\begin{center}
+	\texttt{clarity on log(price), carat, x, y, z}.
+\end{center}
+\begin{enumerate}
+	\item Fit the regression
+	\item For each coefficient evaluate s.e., z-stat \& p-value for z-test on the significance 
+	\item Evaluate a related critical value
+	\item For each coefficient perform z-test for the significance and state a testing hypothesis. 
+	Make conclusions
+\end{enumerate}
+\end{problem}
+
+\section{LR/Wald tests}
+
+For each text calculate related critical values.
+
+\subsection{Overall significance}
+
+\begin{problem}
+For the dataset \texttt{Diamond} consider a regression
+\begin{center}
+	\texttt{certification on price \& carat}.
+\end{center}
+Test overall significance of the regression and state the testing hypothesis
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{Diamond} consider a regression
+\begin{center}
+	\texttt{colour on price \& carat}.
+\end{center}
+Test overall significance of the regression and state the testing hypothesis
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{Diamond} consider a regression
+\begin{center}
+	\texttt{clarity on price \& carat}.
+\end{center}
+Test overall significance of the regression and state the testing hypothesis
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{diamonds} consider a regression
+\begin{center}
+	\texttt{cut on log(price), carat, x, y, z}.
+\end{center}
+Test overall significance of the regression and state the testing hypothesis
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{diamonds} consider a regression
+\begin{center}
+	\texttt{color on log(price), carat, carat\textsuperscript{2}, x, y, z}.
+\end{center}
+Test overall significance of the regression and state the testing hypothesis
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{diamonds} consider a regression
+\begin{center}
+	\texttt{clarity on log(price), log\textsuperscript{2}(price), carat, x, y, z}.
+\end{center}
+Test overall significance of the regression and state the testing hypothesis
+\end{problem}
+
+\subsection{Joint significance}
+
+\begin{problem}
+For the dataset \texttt{diamonds} consider a regression
+\begin{center}
+	\texttt{cut on log(price), carat, x, y, z}.
+\end{center}
+Test joint significance of regressors \texttt{x, y, z} and 
+state the testing hypothesis
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{sleep75} consider a regression
+\begin{center}
+	\texttt{cut on log(price), carat, carat\textsuperscript{2}, x, y, z}.
+\end{center}
+Test the significance of \texttt{carat} and state the testing hypothesis
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{sleep75} consider a regression
+\begin{center}
+	\texttt{cut on log(price), log\textsuperscript{2}(price), carat, x, y, z}.
+\end{center}
+Test the significance of \texttt{carat} and state the testing hypothesis
+\end{problem}
+	
+\section{Confidence intervals}
+
+\begin{problem}
+For the dataset \texttt{Diamond} consider a regression
+\begin{center}
+	\texttt{certification on price \& carat}.
+\end{center}
+Evaluate 90\%-level confidence intervals for coefficients.
+
+Which are significant at 10\%-significant level?
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{diamonds} consider a regression
+\begin{center}
+	\texttt{cut on log(price), carat, x, y, z}.
+\end{center}
+Evaluate 95\%-level confidence intervals for coefficients.
+
+Which are significant at 5\%-significant level?
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{diamonds} consider a regression
+\begin{center}
+	\texttt{color on log(price), carat, x, y, z, x\textsuperscript{2}, y\textsuperscript{2}, z\textsuperscript{2}}.
+\end{center}
+Evaluate 99\%-level confidence intervals for coefficients.
+
+Which are significant at 1\%-significant level?
+\end{problem}
+
+\section{Prediction}
+
+\begin{problem}
+For the dataset \texttt{Diamond} consider a regression
+\begin{center}
+	\texttt{certification on price \& carat}.
+\end{center}
+Consider diamonds with characteristics
+\begin{center}
+	\begin{tabular}{c|l|l}
+		& price & carat \\ \hline
+	1 & 1260 & 0.3 \\
+	2 & 1427 & 0.32 \\
+	3 & 5193 & 0.71 \\
+	4 & 9573 & 1.01 \\ \hline
+	\end{tabular}
+\end{center}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{Diamond} consider a regression
+\begin{center}
+	\texttt{colour on log(price), carat, carat\textsuperscript{2}}.
+\end{center}
+Consider diamonds with characteristics
+\begin{center}
+	\begin{tabular}{c|l|l}
+		& price & carat \\ \hline
+	1 & 1555 & 0.31 \\
+	2 & 6709 & 0.89 \\
+	3 & 5030 & 0.73 \\
+	4 & 9302 & 1.06 \\ \hline
+	\end{tabular}
+\end{center}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{Diamond} consider a regression
+\begin{center}
+	\texttt{clarity on log(price), log\textsuperscript{2}(price), carat}.
+\end{center}
+Consider diamonds with characteristics
+\begin{center}
+	\begin{tabular}{c|l|l}
+		& price & carat \\ \hline
+	1 & 1126 & 0.31 \\
+	2 & 1911 & 0.4 \\
+	3 & 3651 & 0.57 \\
+	4 & 9153 & 1.01 \\ \hline
+	\end{tabular}
+\end{center}
+\end{problem}
+
+\end{document}
