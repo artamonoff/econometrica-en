@@ -149,7 +149,7 @@ For the dataset \texttt{Diamond} consider a regression
 \begin{problem}
 For the dataset \texttt{Diamond} consider a regression
 \begin{center}
-	\texttt{colour on price \& carat}.
+	\texttt{colour on log(price), carat, carat\textsuperscript{2}}.
 \end{center}
 \begin{enumerate}
 	\item Fit the regression
@@ -163,7 +163,7 @@ For the dataset \texttt{Diamond} consider a regression
 \begin{problem}
 For the dataset \texttt{Diamond} consider a regression
 \begin{center}
-	\texttt{clarity on price \& carat}.
+	\texttt{clarity on log(price), log\textsuperscript{2}(price), carat}.
 \end{center}
 \begin{enumerate}
 	\item Fit the regression
@@ -191,7 +191,7 @@ For the dataset \texttt{diamonds} consider a regression
 \begin{problem}
 For the dataset \texttt{diamonds} consider a regression
 \begin{center}
-	\texttt{color on log(price), carat, x, y, z}.
+	\texttt{color on log(price), carat, carat\textsuperscript{2}, x, y, z}.
 \end{center}
 \begin{enumerate}
 	\item Fit the regression
@@ -205,7 +205,21 @@ For the dataset \texttt{diamonds} consider a regression
 \begin{problem}
 For the dataset \texttt{diamonds} consider a regression
 \begin{center}
-	\texttt{clarity on log(price), carat, x, y, z}.
+	\texttt{clarity on log(price), log\textsuperscript{2}(price), carat, x, y, z}.
+\end{center}
+\begin{enumerate}
+	\item Fit the regression
+	\item For each coefficient evaluate s.e., z-stat \& p-value for z-test on the significance 
+	\item Evaluate a related critical value
+	\item For each coefficient perform z-test for the significance and state a testing hypothesis. 
+	Make conclusions
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For the dataset \texttt{diamonds} consider a regression
+\begin{center}
+	\texttt{cut on log(price), log\textsuperscript{2}(price), carat, carat\textsuperscript{2}}.
 \end{center}
 \begin{enumerate}
 	\item Fit the regression
@@ -346,6 +360,8 @@ Consider diamonds with characteristics
 	4 & 9573 & 1.01 \\ \hline
 	\end{tabular}
 \end{center}
+Predict the dependent variable for each individual in the sample and interpret predicted values. 
+Round the answer to 3 decimal places.
 \end{problem}
 
 \begin{problem}
@@ -363,6 +379,8 @@ Consider diamonds with characteristics
 	4 & 9302 & 1.06 \\ \hline
 	\end{tabular}
 \end{center}
+Predict the dependent variable for each individual in the sample and interpret predicted values. 
+Round the answer to 3 decimal places.
 \end{problem}
 
 \begin{problem}
@@ -380,6 +398,8 @@ Consider diamonds with characteristics
 	4 & 9153 & 1.01 \\ \hline
 	\end{tabular}
 \end{center}
+Predict the dependent variable for each individual in the sample and interpret predicted values. 
+Round the answer to 3 decimal places.
 \end{problem}
 
 \end{document}
