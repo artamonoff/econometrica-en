@@ -246,7 +246,8 @@ A panel of 532 observations from 1979 to 1988
 - lnwg log of hourly wage
 - kids number of children
 - age age
-- disab bad health id id
+- disab bad health 
+- id id
 - year year
 
 **Details** 
